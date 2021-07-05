@@ -1,0 +1,43 @@
+public class Patient
+
+   Patient( String name, int age, int aadhar, int phoneNumber, int ID)
+
+    getName()
+    getAge
+    getAadhar
+    getPhoneNumber
+    generateID
+ 
+    setName
+    setAge
+    setAadhar
+    setPhoneNumber
+    
+// Appointments
+
+public class Doctor
+ 
+    Doctor( String name, String department, //float rating, //Time[] timeslots, String meetingCode)
+
+    getters
+    setters
+
+public class Time
+
+    Time( int date, int month, int year, int slotNumber, boolean empty)
+
+    getters
+    setters
+
+1. Sign In page
+2. Home page - Displays details and appointments
+3. Choosing a doctor:
+   a)Covid
+   b)Pediatrics
+   c)ENT
+   d)Dermatology
+   e)Psychiatry
+   
+4. List of doctors (and ratings if possible)
+5. Choose timeslot and display meeting code
+6. Payment 
