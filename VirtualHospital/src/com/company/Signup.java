@@ -5,12 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Signup extends Patient implements ActionListener {
+public class Signup  implements ActionListener {
     JFrame frame2 = new JFrame();
     JLabel background, ID;
     JTextField name, age, aadharNumber, Password;
     JButton submit;
-    int index = 2222;
+    int index = 1000;
 
     Signup() {
         ImageIcon image = new ImageIcon("vh.jpg");
@@ -70,7 +70,7 @@ public class Signup extends Patient implements ActionListener {
     }
 
     private String setID() {
-        index += 1;
+        index += Main.counter;
         return String.valueOf(index);
     }
 
