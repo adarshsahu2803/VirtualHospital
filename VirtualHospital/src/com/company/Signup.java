@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
-public class Signup implements ActionListener {
+public class Signup extends Patient implements ActionListener {
     JFrame frame2 = new JFrame();
     JLabel background, ID;
     JTextField name, age, aadharNumber, Password;
