@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 public class Main {
 
+//    public static Doctor[] doctorsList;
+//
+//    public static String getDepartment(String id) {
+//
+//    }
+
     public static void main(String[] args) throws FileNotFoundException {
 
         Doctor[] doctorsList = new Doctor[50];

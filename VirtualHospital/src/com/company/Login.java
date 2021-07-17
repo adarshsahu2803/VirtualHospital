@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.net.Inet4Address;
 
 public class Login implements ActionListener{
     JFrame frame1 = new JFrame();
@@ -48,10 +51,27 @@ public class Login implements ActionListener{
         frame1.setVisible(true);
     }
 
+//    public boolean checkDetails(String ID, String Password) {
+//
+//
+//        if((Integer.parseInt(this.ID.getName()) >= 2343245 && Integer.parseInt(this.ID.getName()) <= 2343294) && this.Password.equals()) {}
+//
+//    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == submit) {
+        if (e.getSource() == submit) {
+//            if(checkDetails(ID.getName(), Password.getName())){
+//                frame1.dispose();
+//                //homepage()
+//            }
+//            else {
+////                String[] responses = {"OK"};
+//            JOptionPane.showMessageDialog(null, "Invalid ID/Password", "ERROR", JOptionPane.PLAIN_MESSAGE);
+//            }
+
             System.out.println("save details");
         }
     }
 }
+
