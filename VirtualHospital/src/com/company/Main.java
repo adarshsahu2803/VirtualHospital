@@ -23,8 +23,26 @@ public class Main {
 
         scanner.close();
 
-//        for(int i=0; i<50; i++){
-//            System.out.println(doctorsList[i]);
+        Patient[] patientsList = new Patient[100];
+        n=0;
+        String file = "PatientDetails.txt";
+
+        File patientsFile = new File(file);
+        Scanner scanner2 = new Scanner(patientsFile);
+        scanner2.nextLine();
+
+
+        while(scanner2.hasNextLine()) {
+            String[] patient = scanner2.nextLine().split("[|]");
+            if(patient[0].equals("")) continue;
+            patientsList[n] = new Patient(Integer.parseInt(patient[0]), patient[1], Integer.parseInt(patient[2]), patient[3], patient[4], patient[5]);
+            n++;
+        }
+
+
+//        for(int i=0; i<patientsList.length; i++){
+//            System.out.println(patientsList[i]);
+//            System.out.println(counter);
 //        }
 
 

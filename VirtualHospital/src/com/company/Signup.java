@@ -5,18 +5,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Signup extends Patient implements ActionListener {
+public class Signup implements ActionListener {
     JFrame frame2 = new JFrame();
     JLabel background, ID;
     JTextField name, age, aadharNumber, Password;
     JButton submit;
-    int index = 2222;
+    int index = 1000;
 
     Signup() {
         ImageIcon image = new ImageIcon("vh.jpg");
         ImageIcon bg = new ImageIcon("bg3.jpg");
-
-//        name.getName()
 
         background = new JLabel(bg);
         background.setSize(800,600);
@@ -69,15 +67,36 @@ public class Signup extends Patient implements ActionListener {
         frame2.setVisible(true);
     }
 
+    private int getLinesCount() {
+        int lines = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader("PatientDetails.txt"))) {
+            while (br.readLine() != null)
+                lines++;
+        } catch (Exception e) {}
+
+        return lines;
+
+    }
+
     private String setID() {
-        index += 1;
-        return String.valueOf(index);
+        return String.valueOf(index + getLinesCount());
+    }
+
+    public void saveDetails() {
+        Patient p = new Patient();
+
+        p.setUserID(setID());
+        p.setName(name.getText());
+        p.setAge(age.getText());
+        p.setAadharNum(aadharNumber.getText());
+        p.setPassword(Password.getText());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == submit) {
             frame2.dispose();
+            saveDetails();
             new LoginSignup();
             System.out.println("save details");
         }

@@ -1,6 +1,5 @@
 //package com.company;
 //
-//
 //import java.io.BufferedWriter;
 //import java.io.FileWriter;
 //import java.io.IOException;
@@ -9,7 +8,7 @@
 //public class exp {
 //    public static void main(String[] args) {
 //
-//        try (FileWriter f = new FileWriter("PatientDetails.txt", true);
+//        try (FileWriter f = new FileWriter("experiment.txt", true);
 //             BufferedWriter b = new BufferedWriter(f);
 //             PrintWriter p = new PrintWriter(b);) {
 //
