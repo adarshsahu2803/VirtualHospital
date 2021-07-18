@@ -1,1 +1,1 @@
-ID|NAME|AGE|AADHAR|PHONE|PASSWORD
+ID|Name|Age|Aadhar Number|Password

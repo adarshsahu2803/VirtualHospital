@@ -20,7 +20,7 @@ public class LoginSignup implements ActionListener{
         frame.add(background);
         background.setIcon(icon);
 
-        frame.setTitle("Login/Signup");
+        frame.setTitle("SHAA");
         frame.setResizable(false);
         frame.setSize(800,600);
         frame.setLayout(null);
@@ -50,13 +50,11 @@ public class LoginSignup implements ActionListener{
         if(e.getSource() == login) {
             frame.dispose();
             new Login();
-            System.out.println("login page");
         }
 
         if(e.getSource() == signup) {
             frame.dispose();
             new Signup();
-            System.out.println("signup page");
         }
     }
 }

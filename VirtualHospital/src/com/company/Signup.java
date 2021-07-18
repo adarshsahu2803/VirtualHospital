@@ -21,7 +21,7 @@ public class Signup extends Patient implements ActionListener {
         background.setSize(800,600);
 
         frame2.add(background);
-        frame2.setTitle("Login");
+        frame2.setTitle("SHAA");
         frame2.setResizable(false);
         frame2.setSize(800,600);
         frame2.setLayout(null);
@@ -99,7 +99,6 @@ public class Signup extends Patient implements ActionListener {
             frame2.dispose();
             saveDetails();
             new LoginSignup();
-            System.out.println("save details");
         }
     }
 }

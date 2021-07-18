@@ -4,9 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.net.Inet4Address;
 
 public class Login implements ActionListener{
     JFrame frame1 = new JFrame();
@@ -22,7 +19,7 @@ public class Login implements ActionListener{
         background.setSize(800,600);
 
         frame1.add(background);
-        frame1.setTitle("Login");
+        frame1.setTitle("SHAA");
         frame1.setResizable(false);
         frame1.setSize(800,600);
         frame1.setLayout(null);
@@ -32,7 +29,6 @@ public class Login implements ActionListener{
 
         ID = new JTextField();
         ID.setBounds(300, 150, 200,50);
-        ID.setPreferredSize(new Dimension(200,50));
         ID.setText("ID");
 
         Password = new JTextField();
@@ -61,16 +57,8 @@ public class Login implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
-//            if(checkDetails(ID.getName(), Password.getName())){
-//                frame1.dispose();
-//                //homepage()
-//            }
-//            else {
-////                String[] responses = {"OK"};
-//            JOptionPane.showMessageDialog(null, "Invalid ID/Password", "ERROR", JOptionPane.PLAIN_MESSAGE);
-//            }
-
-            System.out.println("save details");
+            frame1.dispose();
+            new HomePage();
         }
     }
 }

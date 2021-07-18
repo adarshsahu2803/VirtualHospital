@@ -7,6 +7,7 @@ public class Time {
     public Time(String daySlot){
         this.daySlot = daySlot;
     }
+
     public int[] setSlots(){
         int[] Slots = new int[9];
         String[] workDays = new String[3];

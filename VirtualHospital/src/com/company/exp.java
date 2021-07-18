@@ -1,16 +1,12 @@
 package com.company;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Arrays;
 
 public class exp {
     public static void main(String[] args) {
 
-        Login l = new Login();
-
-
+        Time t = new Time("3-3,5,6:4-7,8,9:5-13,15,16");
+        System.out.println(Arrays.toString(t.setSlots()));
     }
 
 }
