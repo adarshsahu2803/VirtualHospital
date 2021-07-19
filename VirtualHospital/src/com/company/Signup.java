@@ -19,9 +19,11 @@ public class Signup extends Patient implements ActionListener {
 
         background = new JLabel(bg);
         background.setSize(800,600);
+        background.setHorizontalAlignment(JLabel.LEFT);
+        background.setVerticalAlignment(JLabel.BOTTOM);
 
         frame2.add(background);
-        frame2.setTitle("SHAA");
+        frame2.setTitle("SAHA");
         frame2.setResizable(false);
         frame2.setSize(800,600);
         frame2.setLayout(null);
@@ -32,31 +34,36 @@ public class Signup extends Patient implements ActionListener {
         name = new JTextField();
         name.setBounds(150, 200, 200,50);
         name.setText("Name");
+        name.setBorder(BorderFactory.createBevelBorder(1));
 
         age = new JTextField();
         age.setBounds(450, 200, 200,50);
         age.setText("Age");
+        age.setBorder(BorderFactory.createBevelBorder(1));
 
         aadharNumber = new JTextField();
         aadharNumber.setBounds(150, 275, 200,50);
         aadharNumber.setText("Aadhar Number");
+        aadharNumber.setBorder(BorderFactory.createBevelBorder(1));
 
         Password = new JTextField();
         Password.setBounds(450, 275, 200,50);
         Password.setText("Password");
-        
+        Password.setBorder(BorderFactory.createBevelBorder(1));
+
         submit = new JButton();
         submit.setBounds(300, 425, 200,50);
         submit.addActionListener(this);
         submit.setText("submit");
         submit.setFocusable(false);
+        submit.setBorder(BorderFactory.createBevelBorder(1));
 
         ID = new JLabel();
         ID.setHorizontalTextPosition(JLabel.CENTER);
         ID.setText("User ID : " + setID());
         ID.setBounds(300, 100, 200,50);
-        ID.setBackground(Color.lightGray);
         ID.setOpaque(true);
+        ID.setBorder(BorderFactory.createBevelBorder(1));
 
         background.add(ID);
 
