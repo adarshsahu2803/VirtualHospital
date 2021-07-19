@@ -98,7 +98,7 @@ public class Patient {
     }
 
     public static boolean isIdValid( Patient[] list, int ID){
-        for(int i=0; i<2; i++){
+        for(int i=0; i<Signup.getLinesCount(); i++){
             if(list[i].userID == ID)
                 return true;
         }

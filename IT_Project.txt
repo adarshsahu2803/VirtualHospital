@@ -29,6 +29,10 @@ public class Time
     getters
     setters
 
+public class PatientDetails
+
+   patientID, gender, bloodGroup, height, weight, phoneNumber
+
 1. Sign In page
 2. Home page - Displays details and appointments
 3. Choosing a doctor:

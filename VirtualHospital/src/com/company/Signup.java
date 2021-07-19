@@ -75,7 +75,7 @@ public class Signup extends Patient implements ActionListener {
         frame2.setVisible(true);
     }
 
-    private int getLinesCount() {
+    public static int getLinesCount() {
         int lines = 0;
         try (BufferedReader br = new BufferedReader(new FileReader("PatientDetails.txt"))) {
             while (br.readLine() != null)

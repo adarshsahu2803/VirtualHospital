@@ -9,6 +9,10 @@ import java.util.Scanner;
 public class Appointment implements ActionListener {
     private String department;
     private String doctorName;
+    private int patientID;
+    private String timeslot;
+    private String feedback;
+    private boolean taken;
 
     JFrame frame5 = new JFrame();
     JLabel background;
@@ -123,6 +127,13 @@ public class Appointment implements ActionListener {
     public Appointment(String Department) {
             department = Department;
         }
+
+//        public Appointment(int ID, String doctor, String department, String timeslot){
+//            patientID = ID;
+//            doctorName = doctor;
+//            department = department;
+//            timeslot = timeslot;
+//        }
 
         public String displayDoctors () {
             String finalStr = "";
