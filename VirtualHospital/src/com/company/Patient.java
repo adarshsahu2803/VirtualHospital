@@ -43,6 +43,9 @@ public class Patient {
     public int getID() {
         return userID;
     }
+    public String getPassword(){
+        return password;
+    }
 
     public void setUserID(String uid) {
         try (FileWriter f = new FileWriter("PatientDetails.txt", true);
@@ -93,4 +96,21 @@ public class Patient {
 
         } catch (Exception e) {}
     }
+
+    public static boolean isIdValid( Patient[] list, int ID){
+        for(int i=0; i<2; i++){
+            if(list[i].userID == ID)
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean checkPassword(Patient[] list, int ID, String password){
+        if(list[ID-1001].getPassword().equals(password))
+            return true;
+        else
+            return false;
+    }
+
+
 }

@@ -84,4 +84,12 @@ public class Doctor {
 		return this.name + "\n" + "Experience : " + this.experience + "\nRating : " + this.rating;
 	}
 
+	public static String getDepartment(Doctor[] list, int ID){
+		for(int i=0; i<list.length; i++){
+			if(list[i].doctorID == ID)
+				return list[i].department;
+		}
+		return "null";
+	}
+
 }

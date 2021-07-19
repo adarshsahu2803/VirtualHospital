@@ -12,9 +12,13 @@ public class Main {
 //
 //    }
 
+    public static Doctor[] doctorsList = new Doctor[50];
+
+    public static Patient[] patientsList = new Patient[100];
+
     public static void main(String[] args) throws FileNotFoundException {
 
-        Doctor[] doctorsList = new Doctor[50];
+
         int n=0;
         String filename = "DoctorDetails.txt";
 
@@ -29,7 +33,7 @@ public class Main {
 
         scanner.close();
 
-        Patient[] patientsList = new Patient[100];
+
         n=0;
         String file = "PatientDetails.txt";
 
@@ -48,7 +52,7 @@ public class Main {
 
 //        for(int i=0; i<patientsList.length; i++){
 //            System.out.println(patientsList[i]);
-//            System.out.println(counter);
+//
 //        }
 
 

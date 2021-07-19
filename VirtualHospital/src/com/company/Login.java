@@ -57,9 +57,35 @@ public class Login implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
-            frame1.dispose();
-            new HomePage();
+
+            int id = Integer.parseInt(ID.getText());
+
+//            if(id >= 2343245 && id <= 2343294 && Doctor.getDepartment(Main.doctorsList, id).equals(Password.getText())){
+//                frame1.dispose();
+//                new HomePage2();
+//            }
+
+            if(Patient.isIdValid(Main.patientsList, id)){
+
+                if(Patient.checkPassword(Main.patientsList, id, Password.getText())){
+                    frame1.dispose();
+                    new HomePage();
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+
+//            for(int i=0; i<Main.patientsList.length; i++){
+//                System.out.println(Main.patientsList[i]);
+
         }
+
     }
 }
+
 
