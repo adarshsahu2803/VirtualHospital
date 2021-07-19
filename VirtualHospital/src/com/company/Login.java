@@ -17,9 +17,11 @@ public class Login implements ActionListener{
 
         background = new JLabel(bg);
         background.setSize(800,600);
+        background.setHorizontalAlignment(JLabel.LEFT);
+        background.setVerticalAlignment(JLabel.BOTTOM);
 
         frame1.add(background);
-        frame1.setTitle("SHAA");
+        frame1.setTitle("SAHA");
         frame1.setResizable(false);
         frame1.setSize(800,600);
         frame1.setLayout(null);
@@ -30,16 +32,19 @@ public class Login implements ActionListener{
         ID = new JTextField();
         ID.setBounds(300, 150, 200,50);
         ID.setText("ID");
+        ID.setBorder(BorderFactory.createBevelBorder(1));
 
         Password = new JTextField();
         Password.setBounds(300, 225, 200,50);
         Password.setText("Password");
+        Password.setBorder(BorderFactory.createBevelBorder(1));
 
         submit = new JButton();
         submit.setBounds(300, 375, 200,50);
         submit.addActionListener(this);
         submit.setText("submit");
         submit.setFocusable(false);
+        submit.setBorder(BorderFactory.createBevelBorder(1));
 
         background.add(ID);
         background.add(Password);

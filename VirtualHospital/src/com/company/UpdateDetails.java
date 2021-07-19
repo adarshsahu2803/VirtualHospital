@@ -16,11 +16,11 @@ public class UpdateDetails implements ActionListener {
 
         background = new JLabel(bg);
         background.setSize(800, 600);
+        background.setHorizontalAlignment(JLabel.LEFT);
+        background.setVerticalAlignment(JLabel.BOTTOM);
 
         frame4.add(background);
-        background.setIcon(bg);
-
-        frame4.setTitle("SHAA");
+        frame4.setTitle("SAHA");
         frame4.setResizable(false);
         frame4.setSize(800, 600);
         frame4.setLayout(null);
