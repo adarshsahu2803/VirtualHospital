@@ -1,1 +1,1 @@
-ID|Name|Age|Aadhar Number|Password
+ID|Name|Age|Aadhar Number|Password|Department|Doctor|Date-Slot

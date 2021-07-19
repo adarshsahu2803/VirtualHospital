@@ -20,7 +20,7 @@ public class LoginSignup implements ActionListener{
         frame.add(background);
         background.setIcon(icon);
 
-        frame.setTitle("SHAA");
+        frame.setTitle("SAHA");
         frame.setResizable(false);
         frame.setSize(800,600);
         frame.setLayout(null);
@@ -33,12 +33,14 @@ public class LoginSignup implements ActionListener{
         login.addActionListener(this);
         login.setText("Login");
         login.setFocusable(false);
+        login.setBorder(BorderFactory.createBevelBorder(1));
 
         signup = new JButton();
         signup.setBounds(450, 400, 200,50);
         signup.addActionListener(this);
         signup.setText("Signup");
         signup.setFocusable(false);
+        signup.setBorder(BorderFactory.createBevelBorder(1));
 
         background.add(login);
         background.add(signup);
