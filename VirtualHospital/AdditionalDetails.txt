@@ -1,1 +1,1 @@
-PATIENTID|GENDER|BLOODGROUP|HEIGHT|WEIGHT|PHONENUMBER
+Patient ID|Gender|Blood Group|Height|Weight|Phone Number

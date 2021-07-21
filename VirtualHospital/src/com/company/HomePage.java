@@ -74,7 +74,10 @@ public class HomePage implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == updateDetails) {}
+        if(e.getSource() == updateDetails) {
+            frame3.dispose();
+            new UpdateDetails();
+        }
 
         if(e.getSource() == newAppointment) {
             frame3.dispose();

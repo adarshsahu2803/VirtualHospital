@@ -18,13 +18,14 @@ public class Appointment implements ActionListener {
     JLabel background;
     JComboBox selectDepartment, selectDoctor = new JComboBox();
     JTextField dateSlot, meetLink;
-    JButton submit;
+    JButton submit, home;
     JTextArea textArea, textArea1;
     Appointment appointment;
 
     Appointment() {
         ImageIcon image = new ImageIcon("vh.jpg");
         ImageIcon bg = new ImageIcon("bg3.jpg");
+        ImageIcon hp = new ImageIcon("bg4.jpg");
 
         background = new JLabel(bg);
         background.setSize(1000,600);
@@ -39,6 +40,13 @@ public class Appointment implements ActionListener {
         frame5.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame5.setIconImage(image.getImage());
         frame5.setLocationRelativeTo(null);
+
+        home = new JButton();
+        home.setBounds(10, 10, 35,35);
+        home.addActionListener(this);
+        home.setIcon(hp);
+        home.setFocusable(false);
+        home.setBorder(BorderFactory.createBevelBorder(1));
 
         String[] department = {"Select Department","Dermatologists","Immunologists","Anesthesiologists","Cardiologists","Endocrinologists","Gastroenterologists","Hematologists","Neurologists","Gynecologists","Internists"};
 
@@ -82,6 +90,7 @@ public class Appointment implements ActionListener {
         submit.setFocusable(false);
         submit.setBorder(BorderFactory.createBevelBorder(1));
 
+        background.add(home);
         background.add(selectDepartment);
         background.add(textArea);
         background.add(selectDoctor);
@@ -95,6 +104,11 @@ public class Appointment implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == home) {
+            frame5.dispose();
+            new HomePage();
+        }
+
         if (e.getSource() == selectDepartment) {
             if (selectDepartment.getSelectedItem().equals("Select Department")) {
             } else {
@@ -159,7 +173,7 @@ public class Appointment implements ActionListener {
         }
 
         public void setDoctor (String doctorName)
-        {        //take (doctor name) as input & append field in patient notepad
+        {
 
             this.doctorName = doctorName;
 
@@ -175,7 +189,7 @@ public class Appointment implements ActionListener {
 
         }
 
-        public void displayDatesSlots (String date){    //display available dates with their slots
+        public void displayDatesSlots (String date){
 
             try {
                 Scanner scanner = new Scanner(new File("DoctorDetails.txt"));
@@ -192,7 +206,7 @@ public class Appointment implements ActionListener {
             }
         }
 
-        public void setDateSlot (String Date,int SlotNumber){           //edit date and slot number in patient notepad
+        public void setDateSlot (String Date,int SlotNumber){
 
             try (FileWriter f = new FileWriter("PatientDetails.txt", true);
                  BufferedWriter b = new BufferedWriter(f);
