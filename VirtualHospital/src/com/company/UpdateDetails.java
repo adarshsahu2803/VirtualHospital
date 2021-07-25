@@ -16,9 +16,6 @@ public class UpdateDetails implements ActionListener {
     Lists lists = new Lists();
 
     UpdateDetails() throws FileNotFoundException {
-        lists.updatePatientList();
-        lists.updateDoctorList();
-
         ImageIcon image = new ImageIcon("vh.jpg");
         ImageIcon bg = new ImageIcon("bg3.jpg");
         ImageIcon hp = new ImageIcon("bg4.jpg");

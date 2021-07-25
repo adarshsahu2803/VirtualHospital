@@ -65,10 +65,9 @@ public class Login implements ActionListener{
             int id = Integer.parseInt(ID.getText());
 
                 Lists lists = new Lists();
-            try {
-                lists.updatePatientList();
-                lists.updateDoctorList();
-            } catch (Exception ex) {}
+//            try {
+//                lists.updatePatientList();
+//            } catch (Exception ex) {}
 
             if(Patient.isIdValid(lists.patientsList, id)){
 

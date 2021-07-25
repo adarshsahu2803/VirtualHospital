@@ -5,26 +5,26 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Lists {
-    Doctor[] doctorsList = new Doctor[50];
+//    Doctor[] doctorsList = new Doctor[50];
     Patient[] patientsList = new Patient[100];
 
-    public void updateDoctorList() throws FileNotFoundException {
-        int n=0;
-        String filename = "DoctorDetails.txt";
+//    public void updateDoctorList() throws FileNotFoundException {
+//        int n=0;
+//        String filename = "DoctorDetails.txt";
+//
+//        File doctorsFile = new File(filename);
+//        Scanner scanner = new Scanner(doctorsFile);
+//        scanner.nextLine();
+//        while(scanner.hasNextLine()) {
+//            String[] doctor = scanner.nextLine().split("[|]");
+//            doctorsList[n] = new Doctor(doctor[0], doctor[1],Integer.parseInt(doctor[2]), Double.parseDouble(doctor[3]) ,Integer.parseInt(doctor[4]));
+//            n++;
+//        }
+//
+//        scanner.close();
+//    }
 
-        File doctorsFile = new File(filename);
-        Scanner scanner = new Scanner(doctorsFile);
-        scanner.nextLine();
-        while(scanner.hasNextLine()) {
-            String[] doctor = scanner.nextLine().split("[|]");
-            doctorsList[n] = new Doctor(doctor[0], doctor[1],Integer.parseInt(doctor[2]), Double.parseDouble(doctor[3]) ,Integer.parseInt(doctor[4]));
-            n++;
-        }
-
-        scanner.close();
-    }
-
-    public void updatePatientList() throws FileNotFoundException {
+    Lists() throws FileNotFoundException {
         int n=0;
         String file = "PatientDetails.txt";
 
