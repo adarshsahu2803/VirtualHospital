@@ -8,7 +8,8 @@ import java.awt.event.ActionListener;
 public class Login implements ActionListener{
     JFrame frame1 = new JFrame();
     JLabel background;
-    JTextField ID, Password;
+    static JTextField ID;
+    JTextField Password;
     JButton submit;
 
     Login() {
@@ -52,12 +53,9 @@ public class Login implements ActionListener{
         frame1.setVisible(true);
     }
 
-//    public boolean checkDetails(String ID, String Password) {
-//
-//
-//        if((Integer.parseInt(this.ID.getName()) >= 2343245 && Integer.parseInt(this.ID.getName()) <= 2343294) && this.Password.equals()) {}
-//
-//    }
+    public static int getID(){
+        return Integer.parseInt(ID.getText());
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
