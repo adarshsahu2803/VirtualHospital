@@ -3,6 +3,7 @@ package com.company;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class HomePage implements ActionListener {
 
@@ -76,7 +77,9 @@ public class HomePage implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == updateDetails) {
             frame3.dispose();
-            new UpdateDetails();
+            try {
+                new UpdateDetails();
+            } catch (Exception ex) {}
         }
 
         if(e.getSource() == newAppointment) {

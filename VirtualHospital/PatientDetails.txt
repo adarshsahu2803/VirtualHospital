@@ -1,2 +1,14 @@
 ID|Name|Age|Aadhar Number|Password|Department|Doctor|Date-Slot|Feedback
 1001|hamna|19|1233453|Password
+1002|Name|23|123456789123|Password
+1003|Name|345|111111111111|Password
+1004|Name|44|222222222222|aaaaa
+1005|Name|4554|111111111111|Password
+1006|Name|23|232323232323|Password
+1007|Name|24|121212121212|Password
+1008|Name|67|121212121212|Password
+1009|Name|67|121212121212|Password
+1010|asdfsdags|2345|123123123123|Password
+1011|Name|55|121212121222|Password
+1012|Name|34|121212121212|Password
+1013|Name|4356|123123123123|Password

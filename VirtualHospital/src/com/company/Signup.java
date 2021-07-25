@@ -103,9 +103,20 @@ public class Signup extends Patient implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == submit) {
-            frame2.dispose();
-            saveDetails();
-            new LoginSignup();
+            try {
+                int validAge = Integer.parseInt(age.getText());
+            }
+            catch (Exception NumberFormatException) {
+                JOptionPane.showMessageDialog(null, "Invalid Age", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            if(aadharNumber.getText().length() != 12) {
+                JOptionPane.showMessageDialog(null, "Invalid Aadhar Number", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                frame2.dispose();
+                saveDetails();
+                new LoginSignup();
+            }
         }
     }
 }

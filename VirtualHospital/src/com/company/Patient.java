@@ -12,6 +12,10 @@ public class Patient {
     float height,weight;
     boolean covid;
 
+    private String gender;
+    private String bloodGroup;
+    private String phoneNumber;
+
     Patient(int userID, String name, int age, String aadharNum, String password) {
         this.userID = userID;
         this.name = name;
@@ -97,8 +101,90 @@ public class Patient {
         } catch (Exception e) {}
     }
 
+    public void setUserID2(String uid) {
+        try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.print(uid + "|");
+
+        } catch (Exception e) {}
+    }
+
+    public void setGender(String gender) {
+        try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.print(gender + "|");
+
+        } catch (Exception e) {}
+    }
+
+    public void setBloodGroup(String bloodgroup) {
+        try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.print(bloodgroup + "|");
+
+        } catch (Exception e) {}
+    }
+
+    public void setHeight(String height) {
+        try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.print(height + "|");
+
+        } catch (Exception e) {}
+    }
+
+    public void setWeight(String weight) {
+        try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.print(weight + "|");
+
+        } catch (Exception e) {}
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.println(phoneNumber);
+
+        } catch (Exception e) {}
+    }
+
+    //Setters-II
+    public void setterGender(String s){
+        this.gender = s;
+    }
+
+    public void setterBloodGroup(String b){
+        this.bloodGroup = b;
+    }
+
+    public void setterHeight(float height){
+        this.height = height;
+    }
+
+    public void setterWeight(float weight){
+        this.weight = weight;
+    }
+
+    public void setterPhoneNumber(String p){
+        this.phoneNumber = p;
+    }
+    //Setters-II end
+
     public static boolean isIdValid( Patient[] list, int ID){
-        for(int i=0; i<Signup.getLinesCount(); i++){
+        for(int i=0; i<Signup.getLinesCount()-1; i++){
             if(list[i].userID == ID)
                 return true;
         }
