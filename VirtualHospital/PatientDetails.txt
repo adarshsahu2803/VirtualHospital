@@ -12,3 +12,4 @@ ID|Name|Age|Aadhar Number|Password|Department|Doctor|Date-Slot|Feedback
 1011|Name|55|121212121222|Password
 1012|Name|34|121212121212|Password
 1013|Name|4356|123123123123|Password
+1014|Name|23|123123123123|Password

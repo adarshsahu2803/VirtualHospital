@@ -73,6 +73,12 @@ public class UpdateDetails implements ActionListener {
         Password = new JTextField();
         Password.setBounds(50, 250, 200,50);
         Password.setText(lists.patientsList[Login.getID()-1001].getPassword());
+        Aadhar.setBorder(BorderFactory.createBevelBorder(1));
+        Aadhar.setEditable(false);
+
+        Password = new JTextField();
+        Password.setBounds(50, 250, 200,50);
+        Password.setText(lists.patientsList[Login.getID()-1001].getPassword());
         Password.setBorder(BorderFactory.createBevelBorder(1));
         Password.setEditable(false);
 
@@ -146,7 +152,6 @@ public class UpdateDetails implements ActionListener {
         p.setHeight(Height.getText());
         p.setWeight(Weight.getText());
         p.setPhoneNumber(PhoneNumber.getText());
-
     }
 
     private void saveInArray(){
