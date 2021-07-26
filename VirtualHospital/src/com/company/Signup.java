@@ -98,6 +98,7 @@ public class Signup extends Patient implements ActionListener {
         p.setAge(age.getText());
         p.setAadharNum(aadharNumber.getText());
         p.setPassword(Password.getText());
+        p.setNoOfAppointments(0);
     }
 
     @Override
