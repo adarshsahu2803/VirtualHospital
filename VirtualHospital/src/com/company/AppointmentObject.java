@@ -1,21 +1,24 @@
 package com.company;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class AppointmentObject {
     private int patientID,timeslot;
-    String doctor,department,MeetLink,feedback;
+    String doctor,department,MeetLink,feedback,date;
     private boolean completed; 
 
-    public AppointmentObject(int ID,String doctor,String department,int timeslot,Boolean status,String feedback ){
+    public AppointmentObject(int ID,String doctor,String department,String date,int timeslot,Boolean status,String feedback ){
         patientID = ID;
          this.doctor = doctor;
          this.department = department;
          this.timeslot = timeslot;
          this.completed=status;
          this.feedback=feedback;
+         this.date=date;
     }
   public AppointmentObject (){};
 
@@ -38,6 +41,9 @@ public class AppointmentObject {
     public void saveDepartment(String dept){
         this.department=dept;
     }
+    public void saveDate(String date){
+        this.date=date;
+    }
     public void saveTimeslot(int slot){
         this.timeslot=slot;
     }
@@ -51,7 +57,7 @@ public class AppointmentObject {
         this.feedback=feedback;
     }
 public void setDoctor(String doctorname){
-    try (FileWriter f = new FileWriter("PatientDetails.txt", true);
+    try (FileWriter f = new FileWriter("AppointmentDetails.txt", true);
     BufferedWriter b = new BufferedWriter(f);
     PrintWriter p = new PrintWriter(b);) {
 
@@ -61,7 +67,7 @@ public void setDoctor(String doctorname){
 }
 
 public void setDepartment(String departmentname){
-    try (FileWriter f = new FileWriter("PatientDetails.txt", true);
+    try (FileWriter f = new FileWriter("AppointmentDetails.txt", true);
     BufferedWriter b = new BufferedWriter(f);
     PrintWriter p = new PrintWriter(b);) {
 
@@ -70,18 +76,18 @@ public void setDepartment(String departmentname){
 } catch (Exception e) {}
 }
 
-public void setTimeSlot(int time){
-        try (FileWriter f = new FileWriter("PatientDetails.txt", true);
+public void setTimeSlot(String Date,int SlotNumber){
+        try (FileWriter f = new FileWriter("AppointmentDetails.txt", true);
         BufferedWriter b = new BufferedWriter(f);
         PrintWriter p = new PrintWriter(b);) {
     
-       p.print(time + "|");
+       p.print(Date + "|" + SlotNumber);
     
     } catch (Exception e) {}
 }
 
 public void setStatus(boolean status){
-    try (FileWriter f = new FileWriter("PatientDetails.txt", true);
+    try (FileWriter f = new FileWriter("AppointmentDetails.txt", true);
     BufferedWriter b = new BufferedWriter(f);
     PrintWriter p = new PrintWriter(b);) {
 
@@ -91,7 +97,7 @@ public void setStatus(boolean status){
 }
 
 public void setFeedback(String Feedback){
-        try (FileWriter f = new FileWriter("PatientDetails.txt", true);
+        try (FileWriter f = new FileWriter("AppointmentDetails.txt", true);
         BufferedWriter b = new BufferedWriter(f);
         PrintWriter p = new PrintWriter(b);) {
     
@@ -114,6 +120,9 @@ public String getDepartment(){
 public int getTimeslot(){
     return timeslot;
 }
+public String getDate(){
+    return date;
+}
 
 public boolean getStatus(){
     return completed;
@@ -121,18 +130,40 @@ public boolean getStatus(){
 public String getFeedback(){
     return feedback;
 }
+ public String MeetLink() {
+            String str = "https://meet.google.com/";
+            str = str.concat(department);
+
+            File file = new File("DoctorDetails.txt");
+            Scanner scanner = null;
+            try {
+                scanner = new Scanner(file);
+            } catch (Exception e) {
+            }
+
+            while (scanner.hasNextLine()) {
+                String[] arr = scanner.nextLine().split("\\|");
+                if (!arr[0].equals(doctor))
+                    continue;
+                else {
+                    str = str.concat(arr[2]);
+                    break;
+                }
+            }
+            return str;
+        }
 
 public String toStringUpcoming() {
 		
     String timeSlot= timeslot-1+":00-"+timeslot+":00";
-  MeetLink="23432"+department;
-    String Appointments = "Department:"+ department+"\nDoctor: "+doctor+"\nTime Slot: "+timeSlot+"\nMeet Link: "+MeetLink;
+
+    String Appointments = "Department:"+ department+"\nDoctor: "+doctor+"\nTime Slot: "+timeSlot+"\nMeet Link:"+MeetLink();
     return Appointments;
 }
 public String toStringPrevious() {
 		
     String timeSlot= timeslot-1+":00-"+timeslot+":00";
-  MeetLink="23432"+department;
+  
     String Appointments = "Department: "+ department+"\nDoctor: "+doctor+"\nTime Slot: "+timeSlot+"\nFeedback: \n"+feedback;
     return Appointments;
 }

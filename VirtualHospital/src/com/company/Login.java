@@ -8,7 +8,8 @@ import java.awt.event.ActionListener;
 public class Login implements ActionListener{
     JFrame frame1 = new JFrame();
     JLabel background;
-    JTextField ID, Password;
+    static JTextField ID;
+    JTextField Password;
     JButton submit;
 
     Login() {
@@ -52,27 +53,25 @@ public class Login implements ActionListener{
         frame1.setVisible(true);
     }
 
-//    public boolean checkDetails(String ID, String Password) {
-//
-//
-//        if((Integer.parseInt(this.ID.getName()) >= 2343245 && Integer.parseInt(this.ID.getName()) <= 2343294) && this.Password.equals()) {}
-//
-//    }
+    public static int getID(){
+        return Integer.parseInt(ID.getText());
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
+            try {
 
             int id = Integer.parseInt(ID.getText());
 
-//            if(id >= 2343245 && id <= 2343294 && Doctor.getDepartment(Main.doctorsList, id).equals(Password.getText())){
-//                frame1.dispose();
-//                new HomePage2();
-//            }
+                Lists lists = new Lists();
+//            try {
+//                lists.updatePatientList();
+//            } catch (Exception ex) {}
 
-            if(Patient.isIdValid(Main.patientsList, id)){
+            if(Patient.isIdValid(lists.patientsList, id)){
 
-                if(Patient.checkPassword(Main.patientsList, id, Password.getText())){
+                if(Patient.checkPassword(lists.patientsList, id, Password.getText())){
                     frame1.dispose();
                     new HomePage();
 
@@ -81,12 +80,12 @@ public class Login implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
-            else{
+            else {
                 JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-
-//            for(int i=0; i<Main.patientsList.length; i++){
-//                System.out.println(Main.patientsList[i]);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
 
         }
 

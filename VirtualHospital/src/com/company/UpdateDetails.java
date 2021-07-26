@@ -3,15 +3,19 @@ package com.company;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class UpdateDetails implements ActionListener {
 
     JFrame frame4 = new JFrame();
     JLabel background;
     JButton home, submit;
-    JTextField ID, Name, Age, Aadhar, Password, Gender, BloodGroup, Height, Weight, PhoneNumber;
+    JTextField ID, Name, Age, Aadhar, Password, Height, Weight, PhoneNumber;
+    JComboBox Gender, BloodGroup;
 
-    UpdateDetails() {
+    Lists lists = new Lists();
+
+    UpdateDetails() throws FileNotFoundException {
         ImageIcon image = new ImageIcon("vh.jpg");
         ImageIcon bg = new ImageIcon("bg3.jpg");
         ImageIcon hp = new ImageIcon("bg4.jpg");
@@ -39,39 +43,50 @@ public class UpdateDetails implements ActionListener {
 
         ID = new JTextField();
         ID.setBounds(300, 60, 200,50);
-        ID.setText("ID");
+        ID.setText(String.valueOf(Login.getID()));
         ID.setEditable(false);
         ID.setHorizontalAlignment(JTextField.CENTER);
         ID.setBorder(BorderFactory.createBevelBorder(1));
 
         Name = new JTextField();
         Name.setBounds(50, 155, 200,50);
-        Name.setText("Name");
+        Name.setText(lists.patientsList[Login.getID()-1001].getName());
         Name.setBorder(BorderFactory.createBevelBorder(1));
+        Name.setEditable(false);
 
         Age = new JTextField();
         Age.setBounds(300, 155, 200,50);
-        Age.setText("Age");
+        Age.setText(String.valueOf(lists.patientsList[Login.getID()-1001].getAge()));
         Age.setBorder(BorderFactory.createBevelBorder(1));
+        Age.setEditable(false);
 
         Aadhar = new JTextField();
         Aadhar.setBounds(550, 155, 200,50);
-        Aadhar.setText("Aadhar Number");
+        Aadhar.setText(lists.patientsList[Login.getID()-1001].getAadhar());
         Aadhar.setBorder(BorderFactory.createBevelBorder(1));
+        Aadhar.setEditable(false);
+
 
         Password = new JTextField();
         Password.setBounds(50, 250, 200,50);
-        Password.setText("Password");
-        Password.setBorder(BorderFactory.createBevelBorder(1));
+        Password.setText(lists.patientsList[Login.getID()-1001].getPassword());
+        Aadhar.setBorder(BorderFactory.createBevelBorder(1));
+        Aadhar.setEditable(false);
 
-        Gender = new JTextField();
+        Password = new JTextField();
+        Password.setBounds(50, 250, 200,50);
+        Password.setText(lists.patientsList[Login.getID()-1001].getPassword());
+        Password.setBorder(BorderFactory.createBevelBorder(1));
+        Password.setEditable(false);
+
+        String[] gender = {"Gender", "Male", "Female"};
+        Gender = new JComboBox(gender);
         Gender.setBounds(300, 250, 200,50);
-        Gender.setText("Gender");
         Gender.setBorder(BorderFactory.createBevelBorder(1));
 
-        BloodGroup = new JTextField();
+        String[] bloodGroup = {"BloodGroup", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
+        BloodGroup = new JComboBox(bloodGroup);
         BloodGroup.setBounds(550, 250, 200,50);
-        BloodGroup.setText("Blood Group");
         BloodGroup.setBorder(BorderFactory.createBevelBorder(1));
 
         Height = new JTextField();
@@ -113,11 +128,35 @@ public class UpdateDetails implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == submit) {}
+        if(e.getSource() == submit) {
+            saveDetails();
+            saveInArray();
+            frame4.dispose();
+            new HomePage();
+        }
 
         if(e.getSource() == home) {
             frame4.dispose();
             new HomePage();
         }
+    }
+
+    private void saveDetails() {
+        Patient p = new Patient();
+        p.setUserID2(ID.getText());
+        p.setGender(String.valueOf(Gender.getSelectedItem()));
+        p.setBloodGroup(String.valueOf(BloodGroup.getSelectedItem()));
+        p.setHeight(Height.getText());
+        p.setWeight(Weight.getText());
+        p.setPhoneNumber(PhoneNumber.getText());
+    }
+
+    private void saveInArray(){
+        int id = Login.getID();
+        lists.patientsList[id-1001].setterGender(String.valueOf(Gender.getSelectedItem()));
+        lists.patientsList[id-1001].setterBloodGroup(String.valueOf(BloodGroup.getSelectedItem()));
+        lists.patientsList[id-1001].setterHeight(Float.parseFloat(Height.getText()));
+        lists.patientsList[id-1001].setterWeight(Float.parseFloat(Weight.getText()));
+        lists.patientsList[id-1001].setterPhoneNumber(PhoneNumber.getText());
     }
 }

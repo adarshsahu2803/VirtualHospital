@@ -13,7 +13,15 @@ public class Patient {
     private int currentAppointments;
     float height,weight;
     boolean covid;
+
 AppointmentObject[] appointmentsList=new AppointmentObject[50];
+
+
+    private String gender;
+    private String bloodGroup;
+    private String phoneNumber;
+
+
     Patient(int userID, String name, int age, String aadharNum, String password) {
         this.userID = userID;
         this.name = name;
@@ -45,7 +53,7 @@ AppointmentObject[] appointmentsList=new AppointmentObject[50];
         while(scanner3.hasNextLine()) {
             String[] appointments = scanner3.nextLine().split("[|]");     //size of this array=no.of currentAppoinments
             if(Integer.parseInt(appointments[0])==this.userID){
-            appointmentsList[size] = new AppointmentObject(Integer.parseInt(appointments[0]),appointments[1],appointments[2],Integer.parseInt(appointments[3]),Boolean.parseBoolean(appointments[4]),appointments[5] );
+            appointmentsList[size] = new AppointmentObject(Integer.parseInt(appointments[0]),appointments[1],appointments[2],appointments[3],Integer.parseInt(appointments[4]),Boolean.parseBoolean(appointments[5]),appointments[6] );
             size++;}
         }
 
@@ -56,14 +64,14 @@ AppointmentObject[] appointmentsList=new AppointmentObject[50];
     }
 
 
-public void setAppointment(int id,String doctor,String dept,int time,boolean status){
+public void setAppointment(int id,String doctor,String dept,String date,int time,boolean status){
     appointmentsList[currentAppointments].saveID(id);
     appointmentsList[currentAppointments].saveDepartment(dept);
     appointmentsList[currentAppointments].saveDoctor(doctor);
     appointmentsList[currentAppointments].saveStatus(status);
     appointmentsList[currentAppointments].saveTimeslot(time);
     appointmentsList[currentAppointments].saveFeedback("NULL");
-    
+    appointmentsList[currentAppointments].saveDate(date);
 
     this.currentAppointments++;
 
@@ -162,8 +170,90 @@ public int getNumberAppointments(){
     return currentAppointments;
 }
 
+    public void setUserID2(String uid) {
+        try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.print(uid + "|");
+
+        } catch (Exception e) {}
+    }
+
+    public void setGender(String gender) {
+        try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.print(gender + "|");
+
+        } catch (Exception e) {}
+    }
+
+    public void setBloodGroup(String bloodgroup) {
+        try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.print(bloodgroup + "|");
+
+        } catch (Exception e) {}
+    }
+
+    public void setHeight(String height) {
+        try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.print(height + "|");
+
+        } catch (Exception e) {}
+    }
+
+    public void setWeight(String weight) {
+        try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.print(weight + "|");
+
+        } catch (Exception e) {}
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.println(phoneNumber);
+
+        } catch (Exception e) {}
+    }
+
+    //Setters-II
+    public void setterGender(String s){
+        this.gender = s;
+    }
+
+    public void setterBloodGroup(String b){
+        this.bloodGroup = b;
+    }
+
+    public void setterHeight(float height){
+        this.height = height;
+    }
+
+    public void setterWeight(float weight){
+        this.weight = weight;
+    }
+
+    public void setterPhoneNumber(String p){
+        this.phoneNumber = p;
+    }
+    //Setters-II end
+
     public static boolean isIdValid( Patient[] list, int ID){
-        for(int i=0; i<Signup.getLinesCount(); i++){
+        for(int i=0; i<Signup.getLinesCount()-1; i++){
             if(list[i].userID == ID)
                 return true;
         }

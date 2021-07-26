@@ -73,7 +73,7 @@ public class Time {
             }
         }
         String[] weekDays = {"","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
-        time = D3+","+weekDays[D3.getDay()]+"\n"+"Slot "+slots[0]+": "+(slots[0]-1)+":00 - "+slots[0]+":00\n"+"Slot "+slots[1]+": "+(slots[1]-1)+":00 - "+slots[1]+":00\n"+"Slot "+slots[2]+": "+(slots[2]-1)+":00 - "+slots[2]+":00\n"+D2+","+weekDays[D2.getDay()]+"\n"+"Slot "+slots[3]+": "+(slots[3]-1)+":00 - "+slots[3]+":00\n"+"Slot "+slots[4]+": "+(slots[4]-1)+":00 - "+slots[4]+":00\n"+"Slot "+slots[5]+": "+(slots[5]-1)+":00 - "+slots[5]+":00\n"+D1+","+weekDays[D1.getDay()]+"\n"+"Slot "+slots[6]+": "+(slots[6]-1)+":00 - "+slots[6]+":00\n"+"Slot "+slots[7]+": "+(slots[7]-1)+":00 - "+slots[7]+":00\n"+"Slot "+slots[8]+": "+(slots[8]-1)+":00 - "+slots[8]+":00\n";
+        time = D3+","+weekDays[D3.getDay()]+"\n"+"Slot "+slots[0]+":    "+(slots[0]-1)+":00 - "+slots[0]+":00\n"+"Slot "+slots[1]+":    "+(slots[1]-1)+":00 - "+slots[1]+":00\n"+"Slot "+slots[2]+":    "+(slots[2]-1)+":00 - "+slots[2]+":00\n\n"+D2+","+weekDays[D2.getDay()]+"\n"+"Slot "+slots[3]+":    "+(slots[3]-1)+":00 - "+slots[3]+":00\n"+"Slot "+slots[4]+":    "+(slots[4]-1)+":00 - "+slots[4]+":00\n"+"Slot "+slots[5]+":    "+(slots[5]-1)+":00 - "+slots[5]+":00\n\n"+D1+","+weekDays[D1.getDay()]+"\n"+"Slot "+slots[6]+":    "+(slots[6]-1)+":00 - "+slots[6]+":00\n"+"Slot "+slots[7]+":    "+(slots[7]-1)+":00 - "+slots[7]+":00\n"+"Slot "+slots[8]+":    "+(slots[8]-1)+":00 - "+slots[8]+":00\n";
         return time;
     }
 

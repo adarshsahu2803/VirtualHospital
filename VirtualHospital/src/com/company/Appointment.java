@@ -16,7 +16,7 @@ public class Appointment implements ActionListener {
 
     JFrame frame5 = new JFrame();
     JLabel background;
-    JComboBox selectDepartment, selectDoctor = new JComboBox();
+    JComboBox selectDepartment, selectDoctor;
     JTextField dateSlot, meetLink;
     JButton submit, home;
     JTextArea textArea, textArea1;
@@ -61,13 +61,14 @@ public class Appointment implements ActionListener {
         textArea.setBorder(BorderFactory.createBevelBorder(1));
         textArea.setEditable(false);
 
+        selectDoctor = new JComboBox();
         selectDoctor.addItem("Select Doctor");
         selectDoctor.addActionListener(this);
         selectDoctor.setBounds(390, 155, 200, 50);
         selectDoctor.setBorder(BorderFactory.createBevelBorder(1));
 
         textArea1 = new JTextArea();
-        textArea1.setBounds(75, 130, 250,195);
+        textArea1.setBounds(75, 80, 250,245);
         textArea1.setBorder(BorderFactory.createBevelBorder(1));
         textArea1.setEditable(false);
 
@@ -78,7 +79,6 @@ public class Appointment implements ActionListener {
 
         meetLink = new JTextField();
         meetLink.setBounds(300, 370, 400,50);
-        meetLink.setText("__________Meet Link__________");
         meetLink.setHorizontalAlignment(0);
         meetLink.setEditable(false);
         meetLink.setBorder(BorderFactory.createBevelBorder(1));
@@ -110,6 +110,8 @@ public class Appointment implements ActionListener {
         }
 
         if (e.getSource() == selectDepartment) {
+            department = (String) selectDepartment.getSelectedItem();
+
             if (selectDepartment.getSelectedItem().equals("Select Department")) {
             } else {
                 appointment = new Appointment((String) selectDepartment.getSelectedItem());
@@ -121,15 +123,31 @@ public class Appointment implements ActionListener {
 
                 background.add(textArea);
 
-                for(int i=1; i<selectDoctor.getItemCount(); i++)
-                    selectDoctor.removeItemAt(i);
-                addComboItems((String) selectDepartment.getSelectedItem());
+                selectDoctor.removeAllItems();
+                textArea1.setText("");
             }
         }
 
         if (e.getSource() == selectDoctor) {
-            if (selectDepartment.getSelectedItem().equals("Select Doctor")) {}
-            else {}
+            doctorName = (String) selectDoctor.getSelectedItem();
+
+            if (selectDoctor.getSelectedItem() == null) {
+                addComboItems((String) selectDepartment.getSelectedItem());
+            }
+
+
+            if (selectDoctor.getSelectedItem().equals("Select Doctor")) {}
+            else {
+                String txt = "                   Available Dates/Slots\n";
+                txt = txt + appointment.displayDatesSlots((String) selectDoctor.getSelectedItem());
+                textArea1.setText(txt);
+                textArea1.setLineWrap(true);
+                textArea1.setWrapStyleWord(true);
+
+                background.add(textArea1);
+
+                meetLink.setText(generateMeetLink());
+            }
         }
 
         if(e.getSource() == submit) {
@@ -189,21 +207,20 @@ public class Appointment implements ActionListener {
 
         }
 
-        public void displayDatesSlots (String date){
+        public String displayDatesSlots (String doctorName){
 
             try {
                 Scanner scanner = new Scanner(new File("DoctorDetails.txt"));
                 while (scanner.hasNextLine()) {
                     String[] arr = scanner.nextLine().split("\\|");
-                    if (!arr[0].equals(doctorName))
-                        continue;
-
-                    Time time = new Time(arr[5]);
-                    System.out.println(time.toString());
+                    if (arr[0].equals(doctorName)) {
+                        Time time = new Time(arr[5]);
+                        return time.toString();
+                    }
                 }
 
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
+            return "";
         }
 
         public void setDateSlot (String Date,int SlotNumber){
@@ -221,10 +238,7 @@ public class Appointment implements ActionListener {
         }
 
         public void addComboItems(String str) {
-            if(selectDoctor.getItemCount() != 1) {
-                selectDoctor.removeAllItems();
-                selectDoctor.addItem("Select Doctor");
-            }
+            selectDoctor.addItem("Select Doctor");
 
             File file = new File("DoctorDetails.txt");
             Scanner scanner = null;
@@ -239,13 +253,29 @@ public class Appointment implements ActionListener {
                     continue;
                 selectDoctor.addItem(arr[0]);
             }
-    }
+        }
 
-//    public static void main(String[] args) throws FileNotFoundException {
-//        Appointment a = new Appointment("Immunologists");
-//        System.out.println(a.displayDoctors());
-//    }
+        public String generateMeetLink() {
+            String str = "https://meet.google.com/";
+            str = str.concat(department);
 
+            File file = new File("DoctorDetails.txt");
+            Scanner scanner = null;
+            try {
+                scanner = new Scanner(file);
+            } catch (Exception e) {
+            }
 
+            while (scanner.hasNextLine()) {
+                String[] arr = scanner.nextLine().split("\\|");
+                if (!arr[0].equals(doctorName))
+                    continue;
+                else {
+                    str = str.concat(arr[2]);
+                    break;
+                }
+            }
+            return str;
+        }
 }
 

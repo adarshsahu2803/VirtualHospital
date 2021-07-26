@@ -5,20 +5,10 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
-
-//    public static Doctor[] doctorsList;
-//
-//    public static String getDepartment(String id) {
-//
-//    }
-
     public static Doctor[] doctorsList = new Doctor[50];
-
-    public static Patient[] patientsList = new Patient[100];
+    public static Patient[] patientsList=new Patient[100];
 
     public static void main(String[] args) throws FileNotFoundException {
-
-
         int n=0;
         String filename = "DoctorDetails.txt";
 
@@ -27,11 +17,11 @@ public class Main {
         scanner.nextLine();
         while(scanner.hasNextLine()) {
             String[] doctor = scanner.nextLine().split("[|]");
-            doctorsList[n] = new Doctor(doctor[0], doctor[1],Integer.parseInt(doctor[2]), Double.parseDouble(doctor[3]) ,Integer.parseInt(doctor[4]));
+            doctorsList[n] = new Doctor(doctor[0], doctor[1], Integer.parseInt(doctor[2]), Double.parseDouble(doctor[3]), Integer.parseInt(doctor[4]));
             n++;
         }
-
         scanner.close();
+
 
 
         n=0;
@@ -63,6 +53,7 @@ public class Main {
 //            System.out.println(patientsList[i]);
 //
 //        }
+
 
 
 

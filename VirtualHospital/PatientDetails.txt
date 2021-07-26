@@ -1,4 +1,3 @@
 ID|Name|Age|Aadhar Number|Password|Appointments
 1001|hamna|19|1233453|Password|2
 1002|Name|19|23456789|Password|0
-1003|Name|14|234567890|Password|0
