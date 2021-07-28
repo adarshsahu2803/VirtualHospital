@@ -33,18 +33,10 @@ public class Main {
 
 
         while(scanner2.hasNextLine()) {
-            try {
-                   String[] patient = scanner2.nextLine().split("[|]");
-            if(patient[0].equals("")) continue;
-            patientsList[n] = new Patient(Integer.parseInt(patient[0]), patient[1], Integer.parseInt(patient[2]), patient[3], patient[4]);
-            n++;
-            } catch (Exception e) {
-                String[] patient = scanner2.nextLine().split("[|]");
+            String[] patient = scanner2.nextLine().split("[|]");
             if(patient[0].equals("")) continue;
             patientsList[n] = new Patient(Integer.parseInt(patient[0]), patient[1], Integer.parseInt(patient[2]), patient[3], patient[4],Integer.parseInt(patient[5]));
             n++;
-            }
-         
         }
         scanner2.close();
 

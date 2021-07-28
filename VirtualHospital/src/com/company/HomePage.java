@@ -29,12 +29,12 @@ public class HomePage implements ActionListener {
         frame3.setIconImage(image.getImage());
         frame3.setLocationRelativeTo(null);
 
-        updateDetails = new JButton();
-        updateDetails.setBounds(250, 60, 300,50);
-        updateDetails.addActionListener(this);
-        updateDetails.setText("Update Details");
-        updateDetails.setFocusable(false);
-        updateDetails.setBorder(BorderFactory.createBevelBorder(1));
+//        updateDetails = new JButton();
+//        updateDetails.setBounds(250, 60, 300,50);
+//        updateDetails.addActionListener(this);
+//        updateDetails.setText("Update Details");
+//        updateDetails.setFocusable(false);
+//        updateDetails.setBorder(BorderFactory.createBevelBorder(1));
 
         newAppointment = new JButton();
         newAppointment.setBounds(250, 155, 300,50);
@@ -64,7 +64,7 @@ public class HomePage implements ActionListener {
         logout.setFocusable(false);
         logout.setBorder(BorderFactory.createBevelBorder(1));
 
-        background.add(updateDetails);
+//        background.add(updateDetails);
         background.add(newAppointment);
         background.add(upcomingAppointments);
         background.add(previousAppointments);
@@ -75,12 +75,12 @@ public class HomePage implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == updateDetails) {
-            frame3.dispose();
-            try {
-                new UpdateDetails();
-            } catch (Exception ex) {}
-        }
+//        if(e.getSource() == updateDetails) {
+//            frame3.dispose();
+//            try {
+//                new UpdateDetails();
+//            } catch (Exception ex) {}
+//        }
 
         if(e.getSource() == newAppointment) {
             frame3.dispose();

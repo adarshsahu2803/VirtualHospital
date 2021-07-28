@@ -8,7 +8,8 @@ import java.io.*;
 
 public class Signup extends Patient implements ActionListener {
     JFrame frame2 = new JFrame();
-    JLabel background, ID;
+    JLabel background;
+    static JLabel ID;
     JTextField name, age, aadharNumber, Password;
     JButton submit;
     int index = 1000;
@@ -60,7 +61,7 @@ public class Signup extends Patient implements ActionListener {
 
         ID = new JLabel();
         ID.setHorizontalTextPosition(JLabel.CENTER);
-        ID.setText("User ID : " + setID());
+        ID.setText(setID());
         ID.setBounds(300, 100, 200,50);
         ID.setOpaque(true);
         ID.setBorder(BorderFactory.createBevelBorder(1));
@@ -90,6 +91,10 @@ public class Signup extends Patient implements ActionListener {
         return String.valueOf(index + getLinesCount());
     }
 
+    public static int saveID(){
+        return Integer.parseInt(ID.getText());
+    }
+
     public void saveDetails() {
         Patient p = new Patient();
 
@@ -114,9 +119,13 @@ public class Signup extends Patient implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Invalid Aadhar Number", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
             else {
+
                 frame2.dispose();
                 saveDetails();
-                new LoginSignup();
+                Patient newPatient = new Patient(Integer.parseInt(ID.getText()), name.getText(), Integer.parseInt(age.getText()), aadharNumber.getText(), Password.getText());
+                Main.patientsList[getLinesCount()-2] = newPatient;
+
+               new UpdateDetails();
             }
         }
     }

@@ -64,14 +64,14 @@ public class Login implements ActionListener{
 
             int id = Integer.parseInt(ID.getText());
 
-                Lists lists = new Lists();
+//                Lists lists = new Lists();
 //            try {
 //                lists.updatePatientList();
 //            } catch (Exception ex) {}
 
-            if(Patient.isIdValid(lists.patientsList, id)){
+            if(Patient.isIdValid(Main.patientsList, id)){
 
-                if(Patient.checkPassword(lists.patientsList, id, Password.getText())){
+                if(Patient.checkPassword(Main.patientsList, id, Password.getText())){
                     frame1.dispose();
                     new HomePage();
 
