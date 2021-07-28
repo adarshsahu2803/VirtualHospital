@@ -77,6 +77,23 @@ public class Time {
         return time;
     }
 
+    public static boolean completed(String Date,int slotNumber){
+
+        String[] d = Date.split("/");
+        Date appDate = new Date(Integer.parseInt(d[0]),Integer.parseInt(d[1]),Integer.parseInt(d[2]));
+        String[] D = today().split("/");
+        Date toDate = new Date(Integer.parseInt(D[0]),Integer.parseInt(D[1]),Integer.parseInt(D[2]));
+        if(toDate.isAfter(appDate))
+            return true;
+        if(toDate.compareTo(appDate)==0){
+            String[] c = now().split(" ");
+            int h = Integer.parseInt(c[1]);
+            if(h>slotNumber)
+                return true;
+        }
+        return false;
+    }
+
     public int[] setSlots(){
         int[] Slots = new int[9];
         String[] workDays = new String[3];
@@ -93,6 +110,11 @@ public class Time {
 
     public static String today(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d/MM/uuuu");
+        LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
+    }
+    public static String now(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d/MM/uuuu HH");
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
     }
