@@ -9,10 +9,10 @@ import java.util.Scanner;
 public class Appointment implements ActionListener {
     private String department;
     private String doctorName;
-    private int patientID;
-    private String timeslot;
-    private String feedback;
-    private boolean taken;
+    private int patientID = Login.getID();
+    private String DateSlot;
+    private String feedback = "null";
+    private boolean completed = false;
 
     JFrame frame5 = new JFrame();
     JLabel background;
@@ -151,9 +151,30 @@ public class Appointment implements ActionListener {
         }
 
         if(e.getSource() == submit) {
-            frame5.dispose();
-            new HomePage();
+            if(department.equals("Select Department") || doctorName.equals("Select Doctor")) {
+                JOptionPane.showMessageDialog(null, "Invalid Department/Doctor", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+
+            else {
+                frame5.dispose();
+                saveAppointmentDetails();
+                new HomePage();
+            }
         }
+    }
+
+    void saveAppointmentDetails() {
+        AppointmentObject ao = new AppointmentObject();
+
+        ao.setID(patientID);
+        ao.setDepartment(department);
+        ao.setDoctor(doctorName);
+
+        String[] str = dateSlot.getText().split("[-]");
+
+        ao.setTimeSlot(Integer.parseInt(str[0]), Integer.parseInt(str[1]));
+        ao.setStatus(completed);
+        ao.setFeedback(feedback);
     }
 
     public Appointment(String Department) {

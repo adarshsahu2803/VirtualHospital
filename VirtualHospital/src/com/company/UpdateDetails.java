@@ -132,7 +132,7 @@ public class UpdateDetails implements ActionListener {
             saveDetails();
             saveInArray();
             frame4.dispose();
-            new HomePage();
+            new LoginSignup();
         }
 
 //        if(e.getSource() == home) {

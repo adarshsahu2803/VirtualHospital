@@ -8,10 +8,14 @@ import java.util.Scanner;
 
 public class AppointmentObject {
     private int patientID,timeslot;
-    String doctor,department,MeetLink,feedback,date;
+    String doctor;
+    String department;
+    String MeetLink;
+    String feedback;
+    int date;
     private boolean completed; 
 
-    public AppointmentObject(int ID,String doctor,String department,String date,int timeslot,Boolean status,String feedback ){
+    public AppointmentObject(int ID,String doctor,String department,int date,int timeslot,Boolean status,String feedback ){
         patientID = ID;
          this.doctor = doctor;
          this.department = department;
@@ -20,20 +24,10 @@ public class AppointmentObject {
          this.feedback=feedback;
          this.date=date;
     }
-  public AppointmentObject (){};
 
+    public AppointmentObject (){};
 
-    public void setID(int userid){
-        try (FileWriter f = new FileWriter("PatientDetails.txt", true);
-        BufferedWriter b = new BufferedWriter(f);
-        PrintWriter p = new PrintWriter(b);) {
-
-       p.print(userid + "|");
-
-   } catch (Exception e) {}
-    }
-    
-
+    public AppointmentObject(int id, String appointment, String department, int date, int timeslot, boolean completed, String feedback){};
 
     public void saveDoctor(String doctor){
         this.doctor=doctor;
@@ -41,7 +35,7 @@ public class AppointmentObject {
     public void saveDepartment(String dept){
         this.department=dept;
     }
-    public void saveDate(String date){
+    public void saveDate(int date){
         this.date=date;
     }
     public void saveTimeslot(int slot){
@@ -56,7 +50,18 @@ public class AppointmentObject {
     public void saveFeedback(String feedback){
         this.feedback=feedback;
     }
-public void setDoctor(String doctorname){
+
+    public void setID(int userid){
+        try (FileWriter f = new FileWriter("AppointmentDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b);) {
+
+            p.print(userid + "|");
+
+        } catch (Exception e) {}
+    }
+
+    public void setDoctor(String doctorname){
     try (FileWriter f = new FileWriter("AppointmentDetails.txt", true);
     BufferedWriter b = new BufferedWriter(f);
     PrintWriter p = new PrintWriter(b);) {
@@ -76,12 +81,12 @@ public void setDepartment(String departmentname){
 } catch (Exception e) {}
 }
 
-public void setTimeSlot(String Date,int SlotNumber){
+public void setTimeSlot(int Date,int SlotNumber){
         try (FileWriter f = new FileWriter("AppointmentDetails.txt", true);
         BufferedWriter b = new BufferedWriter(f);
         PrintWriter p = new PrintWriter(b);) {
     
-       p.print(Date + "|" + SlotNumber);
+       p.print(Date + "|" + SlotNumber + "|");
     
     } catch (Exception e) {}
 }
@@ -120,7 +125,7 @@ public String getDepartment(){
 public int getTimeslot(){
     return timeslot;
 }
-public String getDate(){
+public int getDate(){
     return date;
 }
 

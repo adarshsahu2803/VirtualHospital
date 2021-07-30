@@ -53,22 +53,17 @@ AppointmentObject[] appointmentsList=new AppointmentObject[50];
         while(scanner3.hasNextLine()) {
             String[] appointments = scanner3.nextLine().split("[|]");     //size of this array=no.of currentAppoinments
             if(Integer.parseInt(appointments[0])==this.userID){
-            appointmentsList[size] = new AppointmentObject(Integer.parseInt(appointments[0]),appointments[1],appointments[2],appointments[3],Integer.parseInt(appointments[4]),Boolean.parseBoolean(appointments[5]),appointments[6] );
+            appointmentsList[size] = new AppointmentObject(Integer.parseInt(appointments[0]),appointments[1],appointments[2],Integer.parseInt(appointments[3]),Integer.parseInt(appointments[4]),Boolean.parseBoolean(appointments[5]),appointments[6] );
             size++;}
         }
-
         scanner3.close();
-
-
-
     }
 
-
-public void setAppointment(int id,String doctor,String dept,String date,int time,boolean status){
+public void setAppointment(int id,String dept,String doctor,int date,int time,boolean completed){
     appointmentsList[currentAppointments].saveID(id);
     appointmentsList[currentAppointments].saveDepartment(dept);
     appointmentsList[currentAppointments].saveDoctor(doctor);
-    appointmentsList[currentAppointments].saveStatus(status);
+    appointmentsList[currentAppointments].saveStatus(completed);
     appointmentsList[currentAppointments].saveTimeslot(time);
     appointmentsList[currentAppointments].saveFeedback("NULL");
     appointmentsList[currentAppointments].saveDate(date);

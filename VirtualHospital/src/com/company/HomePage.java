@@ -37,28 +37,28 @@ public class HomePage implements ActionListener {
 //        updateDetails.setBorder(BorderFactory.createBevelBorder(1));
 
         newAppointment = new JButton();
-        newAppointment.setBounds(250, 155, 300,50);
+        newAppointment.setBounds(250, 95, 300,50);
         newAppointment.addActionListener(this);
         newAppointment.setText("New Appointment");
         newAppointment.setFocusable(false);
         newAppointment.setBorder(BorderFactory.createBevelBorder(1));
 
         upcomingAppointments = new JButton();
-        upcomingAppointments.setBounds(250, 250, 300,50);
+        upcomingAppointments.setBounds(250, 215, 300,50);
         upcomingAppointments.addActionListener(this);
         upcomingAppointments.setText("Upcoming Appointments");
         upcomingAppointments.setFocusable(false);
         upcomingAppointments.setBorder(BorderFactory.createBevelBorder(1));
 
         previousAppointments = new JButton();
-        previousAppointments.setBounds(250, 345, 300,50);
+        previousAppointments.setBounds(250, 335, 300,50);
         previousAppointments.addActionListener(this);
         previousAppointments.setText("Previous Appointments");
         previousAppointments.setFocusable(false);
         previousAppointments.setBorder(BorderFactory.createBevelBorder(1));
 
         logout = new JButton();
-        logout.setBounds(300, 490, 200,50);
+        logout.setBounds(300, 455, 200,50);
         logout.addActionListener(this);
         logout.setText("Logout");
         logout.setFocusable(false);
@@ -87,9 +87,15 @@ public class HomePage implements ActionListener {
             new Appointment();
         }
 
-        if(e.getSource() == upcomingAppointments) {}
+        if(e.getSource() == upcomingAppointments) {
+            frame3.dispose();
+            new UpcomingAppointment();
+        }
 
-        if(e.getSource() == previousAppointments) {}
+        if(e.getSource() == previousAppointments) {
+            frame3.dispose();
+            new PreviousAppointment();
+        }
 
         if(e.getSource() == logout) {
             frame3.dispose();
