@@ -1,9 +1,7 @@
 package com.company;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AppointmentObject {
@@ -27,7 +25,7 @@ public class AppointmentObject {
 
     public AppointmentObject (){};
 
-    public AppointmentObject(int id, String appointment, String department, int date, int timeslot, boolean completed, String feedback){};
+//    public AppointmentObject(int id, String appointment, String department, int date, int timeslot, boolean completed, String feedback){};
 
     public void saveDoctor(String doctor){
         this.doctor=doctor;
@@ -109,8 +107,41 @@ public void setFeedback(String Feedback){
        p.println(Feedback );
     
     } catch (Exception e) {}
-
 }
+
+    public void incrementAppointmentNum(int userID){
+
+        ArrayList<String> tempArray = new ArrayList<>();
+
+        try {
+            try (FileReader fr = new FileReader("PatientDetails.txt")) {
+                Scanner reader = new Scanner(fr);
+                String line;
+                String[] lineArr;
+
+                while ((line = reader.nextLine()) != null) {
+                    lineArr = line.split("[|]");
+                    if (lineArr[0].equals(String.valueOf(userID))) {
+                        tempArray.add(lineArr[0] + "|" + lineArr[1] + "|" + lineArr[2] + "|" + lineArr[3] + "|" + lineArr[4] + "|" + (Integer.parseInt(lineArr[5]) + 1));
+                    } else
+                        tempArray.add(line);
+                }
+            } catch (Exception e) {
+            }
+        } catch (Exception e) {
+        }
+
+        try {
+            try (PrintWriter pr = new PrintWriter("PatientDetails.txt")) {
+                for (String str : tempArray) {
+                    pr.println(str);
+                }
+            } catch (Exception e) {
+            }
+        } catch (Exception e) {
+        }
+
+    }
 
 public int getID(){
     return this.patientID;
@@ -159,21 +190,17 @@ public String getFeedback(){
         }
 
 public String toStringUpcoming() {
-		
+
     String timeSlot= timeslot-1+":00-"+timeslot+":00";
 
     String Appointments = "Department:"+ department+"\nDoctor: "+doctor+"\nTime Slot: "+timeSlot+"\nMeet Link:"+MeetLink();
     return Appointments;
 }
 public String toStringPrevious() {
-		
+
     String timeSlot= timeslot-1+":00-"+timeslot+":00";
-  
+
     String Appointments = "Department: "+ department+"\nDoctor: "+doctor+"\nTime Slot: "+timeSlot+"\nFeedback: \n"+feedback;
     return Appointments;
 }
-
-
-
-
 }

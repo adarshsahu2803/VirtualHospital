@@ -269,7 +269,7 @@ public int getNumberAppointments(){
         for(int i=0;i<currentAppointments;i++){
             if(appointmentsList[i].getStatus()==false){
             flag=0;
-            upcomingAppts=upcomingAppts+appointmentsList[i].toStringUpcoming()+"\n";}
+            upcomingAppts = upcomingAppts + appointmentsList[i].toStringUpcoming()+"\n";}
           
         } 
          if (flag==1)
@@ -284,7 +284,7 @@ public String previousAppointments(){
     for(int i=0;i<currentAppointments;i++){
         if(appointmentsList[i].getStatus()==false){
         flag=0;
-        prevAppts=prevAppts+appointmentsList[i].toStringPrevious()+"\n";}
+        prevAppts =prevAppts + appointmentsList[i].toStringPrevious()+"\n";}
       
     } 
      if (flag==1)

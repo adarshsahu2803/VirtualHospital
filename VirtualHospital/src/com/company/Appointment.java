@@ -175,6 +175,7 @@ public class Appointment implements ActionListener {
         ao.setTimeSlot(Integer.parseInt(str[0]), Integer.parseInt(str[1]));
         ao.setStatus(completed);
         ao.setFeedback(feedback);
+        ao.incrementAppointmentNum(patientID);
     }
 
     public Appointment(String Department) {
