@@ -62,27 +62,38 @@ public class Login implements ActionListener{
         if (e.getSource() == submit) {
             try {
 
-            int id = Integer.parseInt(ID.getText());
+                int id = Integer.parseInt(ID.getText());
 
 //                Lists lists = new Lists();
 //            try {
 //                lists.updatePatientList();
 //            } catch (Exception ex) {}
-
-            if(Patient.isIdValid(Main.patientsList, id)){
-
-                if(Patient.checkPassword(Main.patientsList, id, Password.getText())){
-                    frame1.dispose();
-                    new HomePage();
-
+                if(id>=2343245&&id<=2343294){
+                    if(Password.getText().equals(Main.doctorsList[id-2343245].getDepartment())){
+                        frame1.dispose();
+                        new DocHome();
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-                else{
-                    JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+
+                if(Patient.isIdValid(Main.patientsList, id)){
+
+                    if(Patient.checkPassword(Main.patientsList, id, Password.getText())){
+                        frame1.dispose();
+                        new HomePage();
+
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-            }
-            else {
-                JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
+                else {
+                    if(id<2343245||id>2343294)
+                        JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
