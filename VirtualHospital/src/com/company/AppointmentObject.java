@@ -193,14 +193,14 @@ public String toStringUpcoming() {
 
     String timeSlot= timeslot-1+":00-"+timeslot+":00";
 
-    String Appointments = "Department:"+ department+"\nDoctor: "+doctor+"\nTime Slot: "+timeSlot+"\nMeet Link:"+MeetLink();
+    String Appointments = "Department : "+ department+"\nDoctor : "+doctor+"\nTime Slot : "+timeSlot+"\nMeet Link : "+MeetLink() + "\n\t-----------------------\n";
     return Appointments;
 }
 public String toStringPrevious() {
 
     String timeSlot= timeslot-1+":00-"+timeslot+":00";
 
-    String Appointments = "Department: "+ department+"\nDoctor: "+doctor+"\nTime Slot: "+timeSlot+"\nFeedback: \n"+feedback;
+    String Appointments = "Department : "+ department+"\nDoctor : "+doctor+"\nTime Slot : "+timeSlot+"\nFeedback : \n"+feedback + "\n\t-----------------------\n";
     return Appointments;
 }
 }
