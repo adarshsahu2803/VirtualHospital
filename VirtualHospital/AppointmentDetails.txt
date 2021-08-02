@@ -1,4 +1,4 @@
 ID|Department|Doctor|Date|Slot|Completed|Feedback
 1001|Dermatologists|Dr. Anil K. Agarwal|7|19|false|null
-1001|Endocrinologists|Dr. Pradeep G. Talwalkar|3|11|false|null
-1001|Hematologists|Dr. TPR Bharadwaj|6|13|false|null
+1002|Immunologists|Dr.D. Padmanabha Shenoy|1|4|false|null
+1001|Hematologists|Dr. Anju Jain|7|2|false|null

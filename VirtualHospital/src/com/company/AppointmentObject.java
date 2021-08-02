@@ -13,7 +13,7 @@ public class AppointmentObject {
     int date;
     private boolean completed; 
 
-    public AppointmentObject(int ID,String doctor,String department,int date,int timeslot,Boolean status,String feedback ){
+    public AppointmentObject(int ID,String department,String doctor,int date,int timeslot,Boolean status,String feedback ){
         patientID = ID;
          this.doctor = doctor;
          this.department = department;
@@ -192,15 +192,17 @@ public String getFeedback(){
 public String toStringUpcoming() {
 
     String timeSlot= timeslot-1+":00-"+timeslot+":00";
+    String Date = date + "/8/21";
 
-    String Appointments = "Department:"+ department+"\nDoctor: "+doctor+"\nTime Slot: "+timeSlot+"\nMeet Link:"+MeetLink();
+    String Appointments = "Department  :  "+ department+"\nDoctor          :  "+doctor+"\nDate             :  "+Date+"\nTime Slot     :  "+timeSlot+"\nMeet Link     :  "+MeetLink()+"\n";
     return Appointments;
 }
 public String toStringPrevious() {
 
     String timeSlot= timeslot-1+":00-"+timeslot+":00";
+    String Date = date + "/8/21";
 
-    String Appointments = "Department: "+ department+"\nDoctor: "+doctor+"\nTime Slot: "+timeSlot+"\nFeedback: \n"+feedback;
+    String Appointments = "Department  :  "+ department+"\nDoctor          :  "+doctor+"\nDate             :  "+Date+"\nTime Slot     :  "+timeSlot+"\nFeedback     :  "+feedback+"\n";
     return Appointments;
 }
 }

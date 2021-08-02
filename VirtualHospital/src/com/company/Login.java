@@ -71,7 +71,7 @@ public class Login implements ActionListener{
                 if(id>=2343245&&id<=2343294){
                     if(Password.getText().equals(Main.doctorsList[id-2343245].getDepartment())){
                         frame1.dispose();
-                        new DocHome();
+                        new DoctorHomePage();
                     }
                     else {
                         JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);

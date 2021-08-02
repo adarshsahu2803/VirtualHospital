@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Scanner;
 
+import static com.company.Signup.getLinesCount;
+
 public class Appointment implements ActionListener {
     private String department;
     private String doctorName;
@@ -169,14 +171,32 @@ public class Appointment implements ActionListener {
         ao.setID(patientID);
         ao.setDepartment(department);
         ao.setDoctor(doctorName);
-
         String[] str = dateSlot.getText().split("[-]");
-
         ao.setTimeSlot(Integer.parseInt(str[0]), Integer.parseInt(str[1]));
         ao.setStatus(completed);
         ao.setFeedback(feedback);
         ao.incrementAppointmentNum(patientID);
     }
+
+//    public int NumberOfAppointments(int userID) {
+//        File file = new File("AppointmentDetails.txt");
+//        Scanner scanner = null;
+//        try {
+//            scanner = new Scanner(file);
+//        } catch (Exception e) {
+//        }
+//
+//        while (scanner.hasNextLine()) {
+//            String[] arr = scanner.nextLine().split("\\|");
+//            if (!arr[0].equals(doctorName))
+//                continue;
+//            else {
+//                str = str.concat(arr[2]);
+//                break;
+//            }
+//        }
+//        return str;
+//    }
 
     public Appointment(String Department) {
             department = Department;

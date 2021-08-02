@@ -14,7 +14,7 @@ public class Patient {
     float height,weight;
     boolean covid;
 
-AppointmentObject[] appointmentsList=new AppointmentObject[50];
+    public static AppointmentObject[] appointmentsList=new AppointmentObject[50];
 
 
     private String gender;
@@ -269,8 +269,8 @@ public int getNumberAppointments(){
         for(int i=0;i<currentAppointments;i++){
             if(appointmentsList[i].getStatus()==false){
             flag=0;
-            upcomingAppts = upcomingAppts + appointmentsList[i].toStringUpcoming()+"\n";}
-          
+            upcomingAppts = upcomingAppts + appointmentsList[i].toStringUpcoming()+"\n";
+            }
         } 
          if (flag==1)
          return "No upcoming appointments";

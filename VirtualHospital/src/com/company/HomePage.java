@@ -10,6 +10,7 @@ public class HomePage implements ActionListener {
     JFrame frame3 = new JFrame();
     JLabel background;
     JButton updateDetails, newAppointment, upcomingAppointments, previousAppointments, logout;
+    JTextField userDetails;
 
     HomePage() {
         ImageIcon image = new ImageIcon("vh.jpg");
@@ -29,12 +30,12 @@ public class HomePage implements ActionListener {
         frame3.setIconImage(image.getImage());
         frame3.setLocationRelativeTo(null);
 
-//        updateDetails = new JButton();
-//        updateDetails.setBounds(250, 60, 300,50);
-//        updateDetails.addActionListener(this);
-//        updateDetails.setText("Update Details");
-//        updateDetails.setFocusable(false);
-//        updateDetails.setBorder(BorderFactory.createBevelBorder(1));
+        userDetails = new JTextField();
+        userDetails.setBounds(600, 25, 150,50);
+        userDetails.setText("User ID : " + Login.getID());
+        userDetails.setHorizontalAlignment(0);
+        userDetails.setBorder(BorderFactory.createBevelBorder(1));
+        userDetails.setEditable(false);
 
         newAppointment = new JButton();
         newAppointment.setBounds(250, 95, 300,50);
@@ -44,27 +45,28 @@ public class HomePage implements ActionListener {
         newAppointment.setBorder(BorderFactory.createBevelBorder(1));
 
         upcomingAppointments = new JButton();
-        upcomingAppointments.setBounds(250, 215, 300,50);
+        upcomingAppointments.setBounds(250, 190, 300,50);
         upcomingAppointments.addActionListener(this);
         upcomingAppointments.setText("Upcoming Appointments");
         upcomingAppointments.setFocusable(false);
         upcomingAppointments.setBorder(BorderFactory.createBevelBorder(1));
 
         previousAppointments = new JButton();
-        previousAppointments.setBounds(250, 335, 300,50);
+        previousAppointments.setBounds(250, 285, 300,50);
         previousAppointments.addActionListener(this);
         previousAppointments.setText("Previous Appointments");
         previousAppointments.setFocusable(false);
         previousAppointments.setBorder(BorderFactory.createBevelBorder(1));
 
         logout = new JButton();
-        logout.setBounds(300, 455, 200,50);
+        logout.setBounds(300, 430, 200,50);
         logout.addActionListener(this);
         logout.setText("Logout");
         logout.setFocusable(false);
         logout.setBorder(BorderFactory.createBevelBorder(1));
 
 //        background.add(updateDetails);
+        background.add(userDetails);
         background.add(newAppointment);
         background.add(upcomingAppointments);
         background.add(previousAppointments);
