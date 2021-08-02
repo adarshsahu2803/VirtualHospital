@@ -113,6 +113,7 @@ public void setCurrentAppointments(int n){
         } catch (Exception e) {}
     }
 
+
     public void setName(String n) {
         try (FileWriter f = new FileWriter("PatientDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
@@ -282,7 +283,7 @@ public String previousAppointments(){
     String prevAppts="";
     int flag=1;
     for(int i=0;i<currentAppointments;i++){
-        if(appointmentsList[i].getStatus()==false){
+        if(appointmentsList[i].getStatus()==true){
         flag=0;
         prevAppts =prevAppts + appointmentsList[i].toStringPrevious()+"\n";}
       

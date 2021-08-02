@@ -13,6 +13,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/VirtualHospital/com/company/HomePage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VirtualHospital/com/company/HomePage$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/VirtualHospital/com/company/HomePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VirtualHospital/com/company/HomePage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/VirtualHospital/com/company/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VirtualHospital/com/company/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VirtualHospital/com/company/Patient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VirtualHospital/com/company/Patient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Appointment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/AppointmentObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/AppointmentObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/DocHome.java" beforeDir="false" />

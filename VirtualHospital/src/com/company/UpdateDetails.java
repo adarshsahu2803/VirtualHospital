@@ -30,7 +30,8 @@ public class UpdateDetails implements ActionListener {
         frame4.setResizable(false);
         frame4.setSize(800, 600);
         frame4.setLayout(null);
-        frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame4.setUndecorated(true);
+        frame4.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame4.setIconImage(image.getImage());
         frame4.setLocationRelativeTo(null);
 
@@ -91,12 +92,12 @@ public class UpdateDetails implements ActionListener {
 
         Height = new JTextField();
         Height.setBounds(50, 345, 200,50);
-        Height.setText("Height");
+        Height.setText("Height(in cm)");
         Height.setBorder(BorderFactory.createBevelBorder(1));
 
         Weight = new JTextField();
         Weight.setBounds(300, 345, 200,50);
-        Weight.setText("Weight");
+        Weight.setText("Weight(in kg)");
         Weight.setBorder(BorderFactory.createBevelBorder(1));
 
         PhoneNumber = new JTextField();
@@ -129,16 +130,58 @@ public class UpdateDetails implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == submit) {
-            saveDetails();
-            saveInArray();
-            frame4.dispose();
-            new LoginSignup();
+            if(check()==1) {
+                saveDetails();
+                saveInArray();
+                frame4.dispose();
+                new LoginSignup();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Check the details entered", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
 //        if(e.getSource() == home) {
 //            frame4.dispose();
 //            new HomePage();
 //        }
+    }
+
+    private int check(){
+        if(String.valueOf(Gender.getSelectedItem()).equals("Gender"))
+            return 0;
+        if(String.valueOf(BloodGroup.getSelectedItem()).equals("BloodGroup"))
+            return 0;
+        if(String.valueOf(Height.getText()).equals("Height(in cm)"))
+            return 0;
+        if(String.valueOf(Weight.getText()).equals("Weight(in kg)"))
+            return 0;
+        if(String.valueOf(PhoneNumber.getText()).equals("Phone Number"))
+            return 0;
+        String s1 = Height.getText();
+        if(s1.equals(""))
+            return 0;
+        int i=0;
+        for(i=0;i<s1.length();i++){
+            if((s1.charAt(i)<'0'&&s1.charAt(i)>'9')&&(s1.charAt(i)!='.'))
+                return 0;
+        }
+        String s2 = Weight.getText();
+        if(s2.equals(""))
+            return 0;
+        for(i=0;i<s2.length();i++){
+            if((s2.charAt(i)<'0'&&s2.charAt(i)>'9')&&(s2.charAt(i)!='.'))
+                return 0;
+        }
+        String s3 = PhoneNumber.getText();
+        if(s3.equals(""))
+            return 0;
+        for(i=0;i<s3.length();i++){
+            if(s3.charAt(i)<'0'&&s3.charAt(i)>'9')
+                return 0;
+        }
+
+        return 1;
     }
 
     private void saveDetails() {

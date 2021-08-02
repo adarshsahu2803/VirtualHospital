@@ -160,6 +160,8 @@ public class Appointment implements ActionListener {
             else {
                 frame5.dispose();
                 saveAppointmentDetails();
+                Main.patientsList[patientID-1001].setCurrentAppointments(Main.patientsList[patientID-1001].getCurrentAppointments()+1);
+                saveAppointmentInArray();
                 new HomePage();
             }
         }
@@ -176,6 +178,12 @@ public class Appointment implements ActionListener {
         ao.setStatus(completed);
         ao.setFeedback(feedback);
         ao.incrementAppointmentNum(patientID);
+
+    }
+
+    void saveAppointmentInArray(){
+        AppointmentObject a1 = new AppointmentObject(patientID,doctorName,department,Integer.parseInt(dateSlot.getText().split("[-]")[0]),Integer.parseInt(dateSlot.getText().split("[-]")[1]),false,null);
+        Main.patientsList[patientID-1001].appointmentsList[Main.patientsList[patientID-1001].getCurrentAppointments()-1] = a1;
     }
 
 //    public int NumberOfAppointments(int userID) {
