@@ -60,6 +60,8 @@ public class Patient {
     }
 
     public void setAppointment(int id,String dept,String doctor,int date,int time,boolean completed){
+        appointmentsList[currentAppointments] = new AppointmentObject();
+
     appointmentsList[currentAppointments].saveID(id);
     appointmentsList[currentAppointments].saveDepartment(dept);
     appointmentsList[currentAppointments].saveDoctor(doctor);

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class Login implements ActionListener{
     JFrame frame1 = new JFrame();
@@ -60,43 +61,33 @@ public class Login implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
-            try {
 
-                int id = Integer.parseInt(ID.getText());
+            int id = Integer.parseInt(ID.getText());
 
-//                Lists lists = new Lists();
-//            try {
-//                lists.updatePatientList();
-//            } catch (Exception ex) {}
-                if(id>=2343245&&id<=2343294){
-                    if(Password.getText().equals(Main.doctorsList[id-2343245].getDepartment())){
-                        frame1.dispose();
+            if(id>=2343245 && id<=2343294){
+                if(Password.getText().equals(Main.doctorsList[id-2343245].getDepartment())){
+                    frame1.dispose();
+                    try {
                         new DoctorHomePage();
-                    }
-                    else {
-                        JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-
-
-                if(Patient.isIdValid(Main.patientsList, id)){
-
-                    if(Patient.checkPassword(Main.patientsList, id, Password.getText())){
-                        frame1.dispose();
-                        new HomePage();
-
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    } catch (FileNotFoundException fileNotFoundException) {
+                        fileNotFoundException.printStackTrace();
                     }
                 }
-                else {
-                    if(id<2343245||id>2343294)
-                        JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+                else
+                    JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
+
+            else if (Patient.isIdValid(Main.patientsList, id)){
+                if(Patient.checkPassword(Main.patientsList, id, Password.getText())){
+                    frame1.dispose();
+                    new HomePage();
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+
+            else
+                JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
 
         }
 

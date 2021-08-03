@@ -160,8 +160,9 @@ public class Appointment implements ActionListener {
             else {
                 frame5.dispose();
                 saveAppointmentDetails();
-                Main.patientsList[patientID-1001].setCurrentAppointments(Main.patientsList[patientID-1001].getCurrentAppointments()+1);
-                saveAppointmentInArray();
+//                Main.patientsList[patientID-1001].setCurrentAppointments(Main.patientsList[patientID-1001].getCurrentAppointments()+1);
+//                saveAppointmentInArray();
+                Main.patientsList[patientID-1001].setAppointment(patientID,doctorName,department,Integer.parseInt(dateSlot.getText().split("[-]")[0]),Integer.parseInt(dateSlot.getText().split("[-]")[1]),false);
                 new HomePage();
             }
         }
@@ -181,10 +182,10 @@ public class Appointment implements ActionListener {
 
     }
 
-    void saveAppointmentInArray(){
-        AppointmentObject a1 = new AppointmentObject(patientID,doctorName,department,Integer.parseInt(dateSlot.getText().split("[-]")[0]),Integer.parseInt(dateSlot.getText().split("[-]")[1]),false,null);
-        Main.patientsList[patientID-1001].appointmentsList[Main.patientsList[patientID-1001].getCurrentAppointments()-1] = a1;
-    }
+//    void saveAppointmentInArray(){
+//        AppointmentObject a1 = new AppointmentObject(patientID,doctorName,department,Integer.parseInt(dateSlot.getText().split("[-]")[0]),Integer.parseInt(dateSlot.getText().split("[-]")[1]),false,null);
+//        Main.patientsList[patientID-1001].appointmentsList[Main.patientsList[patientID-1001].getCurrentAppointments()-1] = a1;
+//    }
 
 //    public int NumberOfAppointments(int userID) {
 //        File file = new File("AppointmentDetails.txt");
