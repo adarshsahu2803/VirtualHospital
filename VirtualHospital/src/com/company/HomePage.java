@@ -92,6 +92,10 @@ public class HomePage implements ActionListener {
         if(e.getSource() == upcomingAppointments) {
             frame3.dispose();
 
+            try {
+                Time.updateCompleted();
+            } catch (Exception ex) {}
+
             JFrame frame6 = new JFrame();
             JLabel background;
             JButton home;
@@ -143,6 +147,10 @@ public class HomePage implements ActionListener {
 
         if(e.getSource() == previousAppointments) {
             frame3.dispose();
+
+            try {
+                Time.updateCompleted();
+            } catch (Exception ex) {}
 
             JFrame frame7 = new JFrame();
             JLabel background;

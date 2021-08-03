@@ -1,3 +1,6 @@
 ID|Department|Doctor|Date|Slot|Completed|Feedback
 1001|Dermatologists|Dr. Anil K. Agarwal|7|19|false|null
-1001|Endocrinologists|Dr. Pradeep G. Talwalkar|3|11|false|null
+1001|Endocrinologists|Dr. Pradeep G. Talwalkar|3|11|true|null
+1001|Immunologists|Dr. Manish Jain|5|5|false|null
+1001|Anesthesiologists|Dr. Anand Murugesan|8|3|false|null
+1001|Cardiologists|Dr. Jaisom Chopra|1|16|true|null

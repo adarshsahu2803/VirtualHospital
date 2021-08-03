@@ -1,7 +1,15 @@
 package com.company;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import static com.company.Patient.appointmentsList;
 
 public class Time {
     private String daySlot;
@@ -77,6 +85,7 @@ public class Time {
         return time;
     }
 
+/*
     public static boolean completed(String Date,int slotNumber){
 
         String[] d = Date.split("/");
@@ -92,6 +101,67 @@ public class Time {
                 return true;
         }
         return false;
+        }
+*/
+
+    public static void updateCompleted() throws FileNotFoundException {
+
+        ArrayList<String> tempArray = new ArrayList<>();
+        boolean status;
+
+        try {
+            try (FileReader fr = new FileReader("AppointmentDetails.txt")) {
+                Scanner reader = new Scanner(fr);
+                String line;
+                String[] lineArr;
+
+                while ((line = reader.nextLine()) != null) {
+                    lineArr = line.split("[|]");
+
+                    if(lineArr[0].equals("ID")) {
+                        tempArray.add(line);
+                        continue;
+                    }
+
+                    if(Integer.parseInt(lineArr[3]) < getDate(today())) status = true;
+                    else if((Integer.parseInt(lineArr[3]) == getDate(today())) && (Integer.parseInt(lineArr[4]) <= getTime())) status = true;
+                        else status = false;
+
+                    tempArray.add(lineArr[0] + "|" + lineArr[1] + "|" + lineArr[2] + "|" + lineArr[3] + "|" + lineArr[4] + "|" + status + "|" + lineArr[6]);
+                }
+            } catch (Exception e) {
+            }
+        } catch (Exception e) {
+        }
+
+        try {
+            try (PrintWriter pr = new PrintWriter("AppointmentDetails.txt")) {
+                for (String str : tempArray) {
+                    pr.println(str);
+                }
+            } catch (Exception e) {
+            }
+        } catch (Exception e) {
+        }
+
+        //updating appointmentList.
+
+        int size=0;
+        String filename = "AppointmentDetails.txt";
+
+        File AppointmentsFile = new File(filename);
+        Scanner scanner3 = new Scanner(AppointmentsFile);
+        scanner3.nextLine();
+
+        while(scanner3.hasNextLine()) {
+            String[] appointments = scanner3.nextLine().split("[|]");
+            if(Integer.parseInt(appointments[0])==Login.getID()){
+
+                appointmentsList[size] = new AppointmentObject(Integer.parseInt(appointments[0]),appointments[1],appointments[2],Integer.parseInt(appointments[3]),Integer.parseInt(appointments[4]),Boolean.parseBoolean(appointments[5]),appointments[6] );
+                size++;
+            }
+        }
+        scanner3.close();
     }
 
     public int[] setSlots(){
@@ -117,6 +187,10 @@ public class Time {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d/MM/uuuu HH");
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
+    }
+    public static int getTime(){
+        String[] t = now().split(" ");
+        return Integer.parseInt(t[1]);
     }
     public static int getDate(String date){
         String[] components = date.split("/");

@@ -51,7 +51,7 @@ public class Patient {
         scanner3.nextLine();
 
         while(scanner3.hasNextLine()) {
-            String[] appointments = scanner3.nextLine().split("[|]");     //size of this array=no.of currentAppoinments
+            String[] appointments = scanner3.nextLine().split("[|]");     //size of this array=no.of currentAppointments
             if(Integer.parseInt(appointments[0])==this.userID){
             appointmentsList[size] = new AppointmentObject(Integer.parseInt(appointments[0]),appointments[1],appointments[2],Integer.parseInt(appointments[3]),Integer.parseInt(appointments[4]),Boolean.parseBoolean(appointments[5]),appointments[6] );
             size++;}
@@ -59,7 +59,7 @@ public class Patient {
         scanner3.close();
     }
 
-public void setAppointment(int id,String dept,String doctor,int date,int time,boolean completed){
+    public void setAppointment(int id,String dept,String doctor,int date,int time,boolean completed){
     appointmentsList[currentAppointments].saveID(id);
     appointmentsList[currentAppointments].saveDepartment(dept);
     appointmentsList[currentAppointments].saveDoctor(doctor);
@@ -72,12 +72,12 @@ public void setAppointment(int id,String dept,String doctor,int date,int time,bo
 
 }
     Patient() {}
-public int getCurrentAppointments(){
-    return currentAppointments;
-}
-public void setCurrentAppointments(int n){
-   this.currentAppointments=n;
-}
+    public int getCurrentAppointments(){
+        return currentAppointments;
+    }
+    public void setCurrentAppointments(int n){
+       this.currentAppointments=n;
+    }
     public String getName() {
         return name;
     }
@@ -162,7 +162,7 @@ public void setCurrentAppointments(int n){
 
         } catch (Exception e) {}
     }
-public int getNumberAppointments(){
+    public int getNumberAppointments(){
     return currentAppointments;
 }
 
@@ -279,19 +279,17 @@ public int getNumberAppointments(){
         
     }
 
-public String previousAppointments(){
-    String prevAppts="";
-    int flag=1;
-    for(int i=0;i<currentAppointments;i++){
-        if(appointmentsList[i].getStatus()==true){
-        flag=0;
-        prevAppts =prevAppts + appointmentsList[i].toStringPrevious()+"\n";}
-      
-    } 
-     if (flag==1)
-     return "No previous appointments";
-     else return prevAppts;
-    
+    public String previousAppointments(){
+        String prevAppts="";
+        int flag=1;
+        for(int i=0;i<currentAppointments;i++){
+            if(appointmentsList[i].getStatus()==true){
+            flag=0;
+            prevAppts =prevAppts + appointmentsList[i].toStringPrevious()+"\n";}
 
-}
+        }
+         if (flag==1)
+         return "No previous appointments";
+         else return prevAppts;
+    }
 }
