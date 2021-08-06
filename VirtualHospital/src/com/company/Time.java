@@ -123,9 +123,11 @@ public class Time {
                         continue;
                     }
 
-                    if(Integer.parseInt(lineArr[3]) < getDate(today())) status = true;
-                    else if((Integer.parseInt(lineArr[3]) == getDate(today())) && (Integer.parseInt(lineArr[4]) <= getTime())) status = true;
-                        else status = false;
+                    Date d = new Date(Integer.parseInt(lineArr[3].split("/")[0]),Integer.parseInt(lineArr[3].split("/")[1]),Integer.parseInt(lineArr[3].split("/")[2]));
+                    Date today = new Date(Time.getDate(Time.today()),Time.getMonth(Time.today()),Time.getYear(Time.today()));
+                    if(today.isAfter(d)) status = true;
+                    else if(d.getDay()==today.getDay() && (Integer.parseInt(lineArr[4]) <= getTime())) status = true;
+                    else status = false;
 
                     tempArray.add(lineArr[0] + "|" + lineArr[1] + "|" + lineArr[2] + "|" + lineArr[3] + "|" + lineArr[4] + "|" + status + "|" + lineArr[6]);
                 }
@@ -157,7 +159,7 @@ public class Time {
             String[] appointments = scanner3.nextLine().split("[|]");
             if(Integer.parseInt(appointments[0])==Login.getID()){
 
-                appointmentsList[size] = new AppointmentObject(Integer.parseInt(appointments[0]),appointments[1],appointments[2],Integer.parseInt(appointments[3]),Integer.parseInt(appointments[4]),Boolean.parseBoolean(appointments[5]),appointments[6] );
+                appointmentsList[size] = new AppointmentObject(Integer.parseInt(appointments[0]),appointments[1],appointments[2],appointments[3],Integer.parseInt(appointments[4]),Boolean.parseBoolean(appointments[5]),appointments[6] );
                 size++;
             }
         }
@@ -189,20 +191,16 @@ public class Time {
         return dtf.format(now);
     }
     public static int getTime(){
-        String[] t = now().split(" ");
-        return Integer.parseInt(t[1]);
+        return Integer.parseInt(now().split(" ")[1]);
     }
     public static int getDate(String date){
-        String[] components = date.split("/");
-        return Integer.parseInt(components[0]);
+        return Integer.parseInt(date.split("/")[0]);
     }
     public static int getMonth(String date){
-        String[] components = date.split("/");
-        return Integer.parseInt(components[1]);
+        return Integer.parseInt(date.split("/")[1]);
     }
     public static int getYear(String date){
-        String[] components = date.split("/");
-        return Integer.parseInt(components[2]);
+        return Integer.parseInt(date.split("/")[2]);
     }
     public static int Day_of_week (String day){
         String[] dmy = day.split("/");

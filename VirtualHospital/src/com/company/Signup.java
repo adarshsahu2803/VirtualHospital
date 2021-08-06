@@ -125,7 +125,7 @@ public class Signup extends Patient implements ActionListener {
                 Patient newPatient = new Patient(Integer.parseInt(ID.getText()), name.getText(), Integer.parseInt(age.getText()), aadharNumber.getText(), Password.getText());
                 Main.patientsList[getLinesCount()-2] = newPatient;
 
-               new UpdateDetails();
+                new UpdateDetails();
             }
         }
     }

@@ -76,7 +76,7 @@ public class Appointment implements ActionListener {
 
         dateSlot = new JTextField();
         dateSlot.setBounds(390, 250, 200,50);
-        dateSlot.setText("Date-Slot (e.g. 14-3)");
+        dateSlot.setText("Date-Slot (e.g. 23/08/2021-3)");
         dateSlot.setBorder(BorderFactory.createBevelBorder(1));
 
         meetLink = new JTextField();
@@ -162,7 +162,7 @@ public class Appointment implements ActionListener {
                 saveAppointmentDetails();
 //                Main.patientsList[patientID-1001].setCurrentAppointments(Main.patientsList[patientID-1001].getCurrentAppointments()+1);
 //                saveAppointmentInArray();
-                Main.patientsList[patientID-1001].setAppointment(patientID,doctorName,department,Integer.parseInt(dateSlot.getText().split("[-]")[0]),Integer.parseInt(dateSlot.getText().split("[-]")[1]),false);
+                Main.patientsList[patientID-1001].setAppointment(patientID,doctorName,department,dateSlot.getText().split("[-]")[0],Integer.parseInt(dateSlot.getText().split("[-]")[1]),false);
                 new HomePage();
             }
         }
@@ -175,7 +175,7 @@ public class Appointment implements ActionListener {
         ao.setDepartment(department);
         ao.setDoctor(doctorName);
         String[] str = dateSlot.getText().split("[-]");
-        ao.setTimeSlot(Integer.parseInt(str[0]), Integer.parseInt(str[1]));
+        ao.setTimeSlot(str[0], Integer.parseInt(str[1]));
         ao.setStatus(completed);
         ao.setFeedback(feedback);
         ao.incrementAppointmentNum(patientID);
@@ -208,8 +208,8 @@ public class Appointment implements ActionListener {
 //    }
 
     public Appointment(String Department) {
-            department = Department;
-        }
+        department = Department;
+    }
 
 //        public Appointment(int ID, String doctor, String department, String timeslot){
 //            patientID = ID;
@@ -218,115 +218,115 @@ public class Appointment implements ActionListener {
 //            timeslot = timeslot;
 //        }
 
-        public String displayDoctors () {
-            String finalStr = "";
-            File file = new File("DoctorDetails.txt");
-            Scanner scanner = null;
-            try {
-                scanner = new Scanner(file);
-            } catch (Exception e) {
-            }
+    public String displayDoctors () {
+        String finalStr = "";
+        File file = new File("DoctorDetails.txt");
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+        } catch (Exception e) {
+        }
 
+        while (scanner.hasNextLine()) {
+            String[] arr = scanner.nextLine().split("\\|");
+            if (!arr[1].equals(department))
+                continue;
+
+            String name = arr[0];
+            String experience = String.valueOf(arr[2]);
+            String ratings = String.valueOf(arr[3]);
+
+            finalStr += "\nName         : " + name + "\nExperience : " + experience + "\nRatings      : " + ratings + "\n";
+        }
+        return finalStr;
+    }
+
+    public void setDoctor (String doctorName)
+    {
+
+        this.doctorName = doctorName;
+
+        try (FileWriter f = new FileWriter("PatientDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b)) {
+
+            p.print(doctorName);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public String displayDatesSlots (String doctorName){
+
+        try {
+            Scanner scanner = new Scanner(new File("DoctorDetails.txt"));
             while (scanner.hasNextLine()) {
                 String[] arr = scanner.nextLine().split("\\|");
-                if (!arr[1].equals(department))
-                    continue;
-
-                String name = arr[0];
-                String experience = String.valueOf(arr[2]);
-                String ratings = String.valueOf(arr[3]);
-
-                finalStr += "\nName         : " + name + "\nExperience : " + experience + "\nRatings      : " + ratings + "\n";
-            }
-            return finalStr;
-        }
-
-        public void setDoctor (String doctorName)
-        {
-
-            this.doctorName = doctorName;
-
-            try (FileWriter f = new FileWriter("PatientDetails.txt", true);
-                 BufferedWriter b = new BufferedWriter(f);
-                 PrintWriter p = new PrintWriter(b)) {
-
-                p.print(doctorName);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-        public String displayDatesSlots (String doctorName){
-
-            try {
-                Scanner scanner = new Scanner(new File("DoctorDetails.txt"));
-                while (scanner.hasNextLine()) {
-                    String[] arr = scanner.nextLine().split("\\|");
-                    if (arr[0].equals(doctorName)) {
-                        Time time = new Time(arr[5]);
-                        return time.toString();
-                    }
-                }
-
-            } catch (Exception e) {}
-            return "";
-        }
-
-        public void setDateSlot (String Date,int SlotNumber){
-
-            try (FileWriter f = new FileWriter("PatientDetails.txt", true);
-                 BufferedWriter b = new BufferedWriter(f);
-                 PrintWriter p = new PrintWriter(b)) {
-
-                p.print(Date + "|" + SlotNumber);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-        public void addComboItems(String str) {
-            selectDoctor.addItem("Select Doctor");
-
-            File file = new File("DoctorDetails.txt");
-            Scanner scanner = null;
-            try {
-                scanner = new Scanner(file);
-            } catch (Exception e) {
-            }
-
-            while (scanner.hasNextLine()) {
-                String[] arr = scanner.nextLine().split("\\|");
-                if (!arr[1].equals(str))
-                    continue;
-                selectDoctor.addItem(arr[0]);
-            }
-        }
-
-        public String generateMeetLink() {
-            String str = "https://meet.google.com/";
-            str = str.concat(department);
-
-            File file = new File("DoctorDetails.txt");
-            Scanner scanner = null;
-            try {
-                scanner = new Scanner(file);
-            } catch (Exception e) {
-            }
-
-            while (scanner.hasNextLine()) {
-                String[] arr = scanner.nextLine().split("\\|");
-                if (!arr[0].equals(doctorName))
-                    continue;
-                else {
-                    str = str.concat(arr[2]);
-                    break;
+                if (arr[0].equals(doctorName)) {
+                    Time time = new Time(arr[5]);
+                    return time.toString();
                 }
             }
-            return str;
+
+        } catch (Exception e) {}
+        return "";
+    }
+
+    public void setDateSlot (String Date,int SlotNumber){
+
+        try (FileWriter f = new FileWriter("PatientDetails.txt", true);
+             BufferedWriter b = new BufferedWriter(f);
+             PrintWriter p = new PrintWriter(b)) {
+
+            p.print(Date + "|" + SlotNumber);
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+    }
+
+    public void addComboItems(String str) {
+        selectDoctor.addItem("Select Doctor");
+
+        File file = new File("DoctorDetails.txt");
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+        } catch (Exception e) {
+        }
+
+        while (scanner.hasNextLine()) {
+            String[] arr = scanner.nextLine().split("\\|");
+            if (!arr[1].equals(str))
+                continue;
+            selectDoctor.addItem(arr[0]);
+        }
+    }
+
+    public String generateMeetLink() {
+        String str = "https://meet.google.com/";
+        str = str.concat(department);
+
+        File file = new File("DoctorDetails.txt");
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+        } catch (Exception e) {
+        }
+
+        while (scanner.hasNextLine()) {
+            String[] arr = scanner.nextLine().split("\\|");
+            if (!arr[0].equals(doctorName))
+                continue;
+            else {
+                str = str.concat(arr[2]);
+                break;
+            }
+        }
+        return str;
+    }
 }
 

@@ -30,7 +30,7 @@ public class DoctorHomePage implements ActionListener {
         while(scanner.hasNextLine()){
             String[] strings = scanner.nextLine().split("[|]");
             if(strings[2].equals(doctorName)){
-                docAppointments[n] = new AppointmentObject(Integer.parseInt(strings[0]),strings[1],strings[2],Integer.parseInt(strings[3]),Integer.parseInt(strings[4]),Boolean.parseBoolean(strings[5]),strings[6]);
+                docAppointments[n] = new AppointmentObject(Integer.parseInt(strings[0]),strings[1],strings[2],strings[3],Integer.parseInt(strings[4]),Boolean.parseBoolean(strings[5]),strings[6]);
                 n++;
             }
         }
@@ -112,7 +112,7 @@ public class DoctorHomePage implements ActionListener {
             String str = (String)upcomingAppID.getSelectedItem();
             if(str.equals("Upcoming Appointment's Date-Slot") != true){
                 for(int i=0; docAppointments[i]!=null; i++){
-                    if(Integer.parseInt(str.split("[-]")[0]) == docAppointments[i].getDate() && Integer.parseInt(str.split("[-]")[1]) == docAppointments[i].getTimeslot()){
+                    if(str.split("[-]")[0].equals( docAppointments[i].getDate()) && Integer.parseInt(str.split("[-]")[1]) == docAppointments[i].getTimeslot()){
                         int id = docAppointments[i].getID();
                         //Code to show patient details
                     }
@@ -124,7 +124,7 @@ public class DoctorHomePage implements ActionListener {
             String str = (String)previousAppID.getSelectedItem();
             if(str.equals("Previous Appointment's Date-Slot") != true){
                 for(int i=0; docAppointments[i]!=null; i++){
-                    if(Integer.parseInt(str.split("[-]")[0]) == docAppointments[i].getDate() && Integer.parseInt(str.split("[-]")[1]) == docAppointments[i].getTimeslot()){
+                    if(str.split("[-]")[0].equals(docAppointments[i].getDate()) && Integer.parseInt(str.split("[-]")[1]) == docAppointments[i].getTimeslot()){
                         int id = docAppointments[i].getID();
                         //Code to update feedback
                     }
