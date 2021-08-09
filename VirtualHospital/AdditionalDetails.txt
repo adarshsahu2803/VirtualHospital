@@ -3,3 +3,4 @@ Patient ID|Gender|Blood Group|Height|Weight|Phone Number
 1002|Female|O+|165|55|9876543210
 1003|Male|A+|180|70|9876598765
 1004|Female|AB+|170|58|8765487654
+1005|Female|B+|120|50|23456789098
