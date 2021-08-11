@@ -202,7 +202,7 @@ public class Appointment implements ActionListener {
         ao.setID(patientID);
         ao.setDepartment(department);
         ao.setDoctor(doctorName);
-        String[] str = dateSlot.getText().split("[-]");
+        String[] str = dateSlot.getText().trim().split("[-]");
         ao.setTimeSlot(str[0], Integer.parseInt(str[1]));
         ao.setStatus(completed);
         ao.setFeedback(feedback);
