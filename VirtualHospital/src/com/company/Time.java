@@ -215,6 +215,79 @@ public class Time {
         if(d0==0) return 7;
         return d0;
     }
+    public static int validTimeslot(){
+        String s = Appointment.selectedDateSlot;
+        if (s==null)
+            return -3;
+        //String s = S.trim();
+        String weekTime = Appointment.weekTime;
+        Time t = new Time(weekTime);
+        int[] slots = t.setSlots();
+        for(int i=0;i<s.length();i++)
+            if(!(s.charAt(i)==45||(s.charAt(i)>=47&&s.charAt(i)<=57))) return 0;
+//        if (s.contains(" ")) return 0;
+//        if(!s.contains("-")) return 0;
+//        if(s.contains(")")||s.contains("(")) return 0;
+//        if(!s.contains("/")) return 0;
+        String[] strings = s.split("-")[0].split("/");
+        if(!(Date.isValid(Integer.parseInt(strings[0]),Integer.parseInt(strings[1]),Integer.parseInt(strings[2]))))
+            return 0;
+        Date selected = Date.toDate(s.split("-")[0]);
+//        String toDay = Time.today();
+//        Date today = new Date(Time.getDate(toDay),Time.getMonth(toDay),Time.getYear(toDay));
+        Date today = Date.toDate(Time.today());
+        Date d1=today,d2=today,d3=today;
+        int day1,day2,day3;
+        day1 = slots[0]/100;
+        day2 = slots[3]/100;
+        day3 = slots[6]/100;
+        for(int i =0;i<9;i++){
+            slots[i] %= 100;
+        }
+        while (true){
+            Date t1 = d1;
+            d1 = t1.next();
+            if(d1.getDay()==day1)
+                break;
+        }
+        while (true){
+            Date t2 = d2;
+            d2 = t2.next();
+            if(d2.getDay()==day2)
+                break;
+        }
+        while (true){
+            Date t3 = d3;
+            d3 = t3.next();
+            if(d3.getDay()==day3)
+                break;
+        }
+        if(!(selected.compareTo(d1)==0 || selected.compareTo(d2)==0||selected.compareTo(d3)==0)) return -1;
+        int slot;
+        if(selected.compareTo(d1)==0){
+            slot = Integer.parseInt(s.split("-")[1]);
+            if(!(slot==slots[0]||slot==slots[1]||slot==slots[2])) return -1;
+        }
+        if(selected.compareTo(d2)==0){
+            slot = Integer.parseInt(s.split("-")[1]);
+            if(!(slot==slots[3]|slot==slots[4]||slot==slots[5])) return -1;
+        }
+        if(selected.compareTo(d3)==0){
+            slot = Integer.parseInt(s.split("-")[1]);
+            if(!(slot==slots[6]||slot==slots[7]||slot==slots[8])) return -1;
+        }
+        if(isOccupied(Appointment.doctorName,Appointment.selectedDateSlot))
+            return -2;
+        return 1;
+    }
+
+    public static boolean isOccupied(String doctorName,String dateSlot){
+        boolean isOccupied = false;
+
+        //Code here
+
+        return isOccupied;
+    }
 
 
 

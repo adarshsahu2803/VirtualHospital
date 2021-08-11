@@ -10,9 +10,11 @@ import static com.company.Signup.getLinesCount;
 
 public class Appointment implements ActionListener {
     private String department;
-    private String doctorName;
+    public static String doctorName;
     private int patientID = Login.getID();
-    private String DateSlot;
+    public static String selectedDateSlot;
+    //public static String availableDateSlot;
+    public static String weekTime;
     private String feedback = "null";
     private boolean completed = false;
 
@@ -20,7 +22,7 @@ public class Appointment implements ActionListener {
     JLabel background;
     JComboBox selectDepartment, selectDoctor;
     JTextField dateSlot, meetLink;
-    JButton submit, home;
+    JButton submit, home,Confirm;
     JTextArea textArea, textArea1;
     Appointment appointment;
 
@@ -76,8 +78,15 @@ public class Appointment implements ActionListener {
 
         dateSlot = new JTextField();
         dateSlot.setBounds(390, 250, 200,50);
-        dateSlot.setText("Date-Slot (e.g. 23/08/2021-3)");
+        dateSlot.setText("Date-Slot (e.g.28/08/2021-3)");
         dateSlot.setBorder(BorderFactory.createBevelBorder(1));
+
+        Confirm = new JButton();
+        Confirm.setBounds(600, 265, 40,25);
+        Confirm.addActionListener(this);
+        Confirm.setText("Save");
+        Confirm.setFocusable(false);
+        Confirm.setBorder(BorderFactory.createBevelBorder(1));
 
         meetLink = new JTextField();
         meetLink.setBounds(300, 370, 400,50);
@@ -98,6 +107,7 @@ public class Appointment implements ActionListener {
         background.add(selectDoctor);
         background.add(textArea1);
         background.add(dateSlot);
+        background.add(Confirm);
         background.add(meetLink);
         background.add(submit);
 
@@ -142,6 +152,7 @@ public class Appointment implements ActionListener {
             else {
                 String txt = "                   Available Dates/Slots\n";
                 txt = txt + appointment.displayDatesSlots((String) selectDoctor.getSelectedItem());
+                //availableDateSlot = appointment.displayDatesSlots((String) selectDoctor.getSelectedItem());
                 textArea1.setText(txt);
                 textArea1.setLineWrap(true);
                 textArea1.setWrapStyleWord(true);
@@ -152,9 +163,26 @@ public class Appointment implements ActionListener {
             }
         }
 
+        if(e.getSource()==Confirm){
+            selectedDateSlot = dateSlot.getText().trim();
+        }
+
         if(e.getSource() == submit) {
-            if(department.equals("Select Department") || doctorName.equals("Select Doctor")) {
-                JOptionPane.showMessageDialog(null, "Invalid Department/Doctor", "ERROR", JOptionPane.ERROR_MESSAGE);
+            int status;
+            if(department.equals("Select Department") || doctorName.equals("Select Doctor"))
+                status = -4;
+            else status = Time.validTimeslot();
+            if(status<1) {
+                if (status==0)
+                    JOptionPane.showMessageDialog(null, "Invalid Date-Slot format Eg:28/8/2021-3", "ERROR", JOptionPane.ERROR_MESSAGE);
+                if(status==-1)
+                    JOptionPane.showMessageDialog(null, "Invalid Date or slot number entered", "ERROR", JOptionPane.ERROR_MESSAGE);
+                if(status==-2)
+                    JOptionPane.showMessageDialog(null, "This slot isn't available.Please book another slot", "ERROR", JOptionPane.ERROR_MESSAGE);
+                if(status==-3)
+                    JOptionPane.showMessageDialog(null, "Save the Dateslot before submitting", "ERROR", JOptionPane.ERROR_MESSAGE);
+                if(status==-4)
+                    JOptionPane.showMessageDialog(null, "Invalid Department/Doctor", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
 
             else {
@@ -266,6 +294,7 @@ public class Appointment implements ActionListener {
                 String[] arr = scanner.nextLine().split("\\|");
                 if (arr[0].equals(doctorName)) {
                     Time time = new Time(arr[5]);
+                    weekTime = arr[5];
                     return time.toString();
                 }
             }
@@ -273,6 +302,8 @@ public class Appointment implements ActionListener {
         } catch (Exception e) {}
         return "";
     }
+
+
 
     public void setDateSlot (String Date,int SlotNumber){
 
