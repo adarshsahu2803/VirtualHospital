@@ -20,7 +20,7 @@ public class LoginSignup implements ActionListener{
         frame.add(background);
         background.setIcon(icon);
 
-        frame.setTitle("SAHA");
+        frame.setTitle("Connect&Care");
         frame.setResizable(false);
         frame.setSize(800,600);
         frame.setLayout(null);

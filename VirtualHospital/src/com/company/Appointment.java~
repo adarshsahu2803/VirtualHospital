@@ -35,7 +35,7 @@ public class Appointment implements ActionListener {
         background.setVerticalAlignment(JLabel.BOTTOM);
 
         frame5.add(background);
-        frame5.setTitle("Connect&Care");
+        frame5.setTitle("SAHA");
         frame5.setResizable(false);
         frame5.setSize(1000,600);
         frame5.setLayout(null);

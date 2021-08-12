@@ -39,7 +39,7 @@ public class Patient {
         this.password = password;
         currentAppointments=appointment;
 
-//when patient makes a new appointment,save the appointmnet details in text file(set functions) also call the saveAppointment function to add it to 
+//when patient makes a new appointment,save the appointmnet details in text file(set functions) also call the saveAppointment function to add it to
 //the array of appointments of the current patient object
 
 
@@ -53,30 +53,32 @@ public class Patient {
         while(scanner3.hasNextLine()) {
             String[] appointments = scanner3.nextLine().split("[|]");     //size of this array=no.of currentAppointments
             if(Integer.parseInt(appointments[0])==this.userID){
-            appointmentsList[size] = new AppointmentObject(Integer.parseInt(appointments[0]),appointments[1],appointments[2],Integer.parseInt(appointments[3]),Integer.parseInt(appointments[4]),Boolean.parseBoolean(appointments[5]),appointments[6] );
-            size++;}
+                appointmentsList[size] = new AppointmentObject(Integer.parseInt(appointments[0]),appointments[1],appointments[2],appointments[3],Integer.parseInt(appointments[4]),Boolean.parseBoolean(appointments[5]),appointments[6] );
+                size++;}
         }
         scanner3.close();
     }
 
-    public void setAppointment(int id,String dept,String doctor,int date,int time,boolean completed){
-    appointmentsList[currentAppointments].saveID(id);
-    appointmentsList[currentAppointments].saveDepartment(dept);
-    appointmentsList[currentAppointments].saveDoctor(doctor);
-    appointmentsList[currentAppointments].saveStatus(completed);
-    appointmentsList[currentAppointments].saveTimeslot(time);
-    appointmentsList[currentAppointments].saveFeedback("NULL");
-    appointmentsList[currentAppointments].saveDate(date);
+    public void setAppointment(int id,String dept,String doctor,String date,int time,boolean completed){
+        appointmentsList[currentAppointments] = new AppointmentObject();
 
-    this.currentAppointments++;
+        appointmentsList[currentAppointments].saveID(id);
+        appointmentsList[currentAppointments].saveDepartment(dept);
+        appointmentsList[currentAppointments].saveDoctor(doctor);
+        appointmentsList[currentAppointments].saveStatus(completed);
+        appointmentsList[currentAppointments].saveTimeslot(time);
+        appointmentsList[currentAppointments].saveFeedback("NULL");
+        appointmentsList[currentAppointments].saveDate(date);
 
-}
+        this.currentAppointments++;
+
+    }
     Patient() {}
     public int getCurrentAppointments(){
         return currentAppointments;
     }
     public void setCurrentAppointments(int n){
-       this.currentAppointments=n;
+        this.currentAppointments=n;
     }
     public String getName() {
         return name;
@@ -163,8 +165,8 @@ public class Patient {
         } catch (Exception e) {}
     }
     public int getNumberAppointments(){
-    return currentAppointments;
-}
+        return currentAppointments;
+    }
 
     public void setUserID2(String uid) {
         try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
@@ -269,14 +271,14 @@ public class Patient {
         int flag=1;
         for(int i=0;i<currentAppointments;i++){
             if(appointmentsList[i].getStatus()==false){
-            flag=0;
-            upcomingAppts = upcomingAppts + appointmentsList[i].toStringUpcoming()+"\n";
+                flag=0;
+                upcomingAppts = upcomingAppts + appointmentsList[i].toStringUpcoming()+"\n";
             }
-        } 
-         if (flag==1)
-         return "No upcoming appointments";
-         else return upcomingAppts;
-        
+        }
+        if (flag==1)
+            return "No upcoming appointments";
+        else return upcomingAppts;
+
     }
 
     public String previousAppointments(){
@@ -284,12 +286,12 @@ public class Patient {
         int flag=1;
         for(int i=0;i<currentAppointments;i++){
             if(appointmentsList[i].getStatus()==true){
-            flag=0;
-            prevAppts =prevAppts + appointmentsList[i].toStringPrevious()+"\n";}
+                flag=0;
+                prevAppts =prevAppts + appointmentsList[i].toStringPrevious()+"\n";}
 
         }
-         if (flag==1)
-         return "No previous appointments";
-         else return prevAppts;
+        if (flag==1)
+            return "No previous appointments";
+        else return prevAppts;
     }
 }

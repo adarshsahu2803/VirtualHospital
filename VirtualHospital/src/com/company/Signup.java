@@ -11,12 +11,20 @@ public class Signup extends Patient implements ActionListener {
     JLabel background;
     static JLabel ID;
     JTextField name, age, aadharNumber, Password;
-    JButton submit;
+    JButton submit, back;
     int index = 1000;
 
     Signup() {
         ImageIcon image = new ImageIcon("vh.jpg");
         ImageIcon bg = new ImageIcon("bg3.jpg");
+        ImageIcon backButton = new ImageIcon("back.png");
+
+        back = new JButton();
+        back.setBounds(10, 10, 40,40);
+        back.addActionListener(this);
+        back.setIcon(backButton);
+        back.setFocusable(false);
+        back.setBorder(BorderFactory.createBevelBorder(1));
 
         background = new JLabel(bg);
         background.setSize(800,600);
@@ -24,7 +32,7 @@ public class Signup extends Patient implements ActionListener {
         background.setVerticalAlignment(JLabel.BOTTOM);
 
         frame2.add(background);
-        frame2.setTitle("SAHA");
+        frame2.setTitle("Connect&Care");
         frame2.setResizable(false);
         frame2.setSize(800,600);
         frame2.setLayout(null);
@@ -67,7 +75,7 @@ public class Signup extends Patient implements ActionListener {
         ID.setBorder(BorderFactory.createBevelBorder(1));
 
         background.add(ID);
-
+        background.add(back);
         background.add(name);
         background.add(age);
         background.add(aadharNumber);
@@ -108,6 +116,11 @@ public class Signup extends Patient implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == back) {
+            frame2.dispose();
+            new LoginSignup();
+        }
+
         if(e.getSource() == submit) {
             try {
                 int validAge = Integer.parseInt(age.getText());
@@ -125,7 +138,7 @@ public class Signup extends Patient implements ActionListener {
                 Patient newPatient = new Patient(Integer.parseInt(ID.getText()), name.getText(), Integer.parseInt(age.getText()), aadharNumber.getText(), Password.getText());
                 Main.patientsList[getLinesCount()-2] = newPatient;
 
-               new UpdateDetails();
+                new UpdateDetails();
             }
         }
     }

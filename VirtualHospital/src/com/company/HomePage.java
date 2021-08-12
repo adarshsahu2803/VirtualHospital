@@ -22,7 +22,7 @@ public class HomePage implements ActionListener {
         background.setVerticalAlignment(JLabel.BOTTOM);
 
         frame3.add(background);
-        frame3.setTitle("SAHA");
+        frame3.setTitle("Connect&Care");
         frame3.setResizable(false);
         frame3.setSize(800,600);
         frame3.setLayout(null);
@@ -111,7 +111,7 @@ public class HomePage implements ActionListener {
             background.setVerticalAlignment(JLabel.BOTTOM);
 
             frame6.add(background);
-            frame6.setTitle("SAHA");
+            frame6.setTitle("Connect&Care");
             frame6.setResizable(false);
             frame6.setSize(800, 600);
             frame6.setLayout(null);
@@ -167,7 +167,7 @@ public class HomePage implements ActionListener {
             background.setVerticalAlignment(JLabel.BOTTOM);
 
             frame7.add(background);
-            frame7.setTitle("SAHA");
+            frame7.setTitle("Connect&Care");
             frame7.setResizable(false);
             frame7.setSize(800, 600);
             frame7.setLayout(null);

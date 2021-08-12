@@ -26,7 +26,7 @@ public class UpdateDetails implements ActionListener {
         background.setVerticalAlignment(JLabel.BOTTOM);
 
         frame4.add(background);
-        frame4.setTitle("SAHA");
+        frame4.setTitle("Connect&Care");
         frame4.setResizable(false);
         frame4.setSize(800, 600);
         frame4.setLayout(null);

@@ -4,25 +4,34 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class Login implements ActionListener{
     JFrame frame1 = new JFrame();
     JLabel background;
     static JTextField ID;
     JTextField Password;
-    JButton submit;
+    JButton submit, back;
 
     Login() {
         ImageIcon image = new ImageIcon("vh.jpg");
         ImageIcon bg = new ImageIcon("bg3.jpg");
+        ImageIcon backButton = new ImageIcon("back.png");
 
+        back = new JButton();
+        back.setBounds(10, 10, 40,40);
+        back.addActionListener(this);
+        back.setIcon(backButton);
+        back.setFocusable(false);
+        back.setBorder(BorderFactory.createBevelBorder(1));
+        
         background = new JLabel(bg);
         background.setSize(800,600);
         background.setHorizontalAlignment(JLabel.LEFT);
         background.setVerticalAlignment(JLabel.BOTTOM);
 
         frame1.add(background);
-        frame1.setTitle("SAHA");
+        frame1.setTitle("Connect&Care");
         frame1.setResizable(false);
         frame1.setSize(800,600);
         frame1.setLayout(null);
@@ -47,6 +56,7 @@ public class Login implements ActionListener{
         submit.setFocusable(false);
         submit.setBorder(BorderFactory.createBevelBorder(1));
 
+        background.add(back);
         background.add(ID);
         background.add(Password);
         background.add(submit);
@@ -59,44 +69,39 @@ public class Login implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == back) {
+            frame1.dispose();
+            new LoginSignup();
+        }
+
         if (e.getSource() == submit) {
-            try {
 
-                int id = Integer.parseInt(ID.getText());
+            int id = Integer.parseInt(ID.getText());
 
-//                Lists lists = new Lists();
-//            try {
-//                lists.updatePatientList();
-//            } catch (Exception ex) {}
-                if(id>=2343245&&id<=2343294){
-                    if(Password.getText().equals(Main.doctorsList[id-2343245].getDepartment())){
-                        frame1.dispose();
+            if(id>=2343245 && id<=2343294){
+                if(Password.getText().equals(Main.doctorsList[id-2343245].getDepartment())){
+                    frame1.dispose();
+                    try {
                         new DoctorHomePage();
-                    }
-                    else {
-                        JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-
-
-                if(Patient.isIdValid(Main.patientsList, id)){
-
-                    if(Patient.checkPassword(Main.patientsList, id, Password.getText())){
-                        frame1.dispose();
-                        new HomePage();
-
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    } catch (FileNotFoundException fileNotFoundException) {
+                        fileNotFoundException.printStackTrace();
                     }
                 }
-                else {
-                    if(id<2343245||id>2343294)
-                        JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+                else
+                    JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
+
+            else if (Patient.isIdValid(Main.patientsList, id)){
+                if(Patient.checkPassword(Main.patientsList, id, Password.getText())){
+                    frame1.dispose();
+                    new HomePage();
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+
+            else
+                JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
 
         }
 
