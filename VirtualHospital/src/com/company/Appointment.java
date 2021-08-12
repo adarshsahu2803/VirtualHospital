@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import static com.company.Signup.getLinesCount;
 
-public class Appointment implements ActionListener {
+public class Appointment implements ActionListener{
     private String department;
     public static String doctorName;
     private int patientID = Login.getID();
@@ -171,7 +171,14 @@ public class Appointment implements ActionListener {
             int status;
             if(department.equals("Select Department") || doctorName.equals("Select Doctor"))
                 status = -4;
-            else status = Time.validTimeslot();
+            else {
+                try {
+                    status = Time.validTimeslot();
+                } catch (FileNotFoundException fileNotFoundException) {
+                    fileNotFoundException.printStackTrace();
+                    status = 7;
+                }
+            }
             if(status<1) {
                 if (status==0)
                     JOptionPane.showMessageDialog(null, "Invalid Date-Slot format Eg:28/8/2021-3", "ERROR", JOptionPane.ERROR_MESSAGE);

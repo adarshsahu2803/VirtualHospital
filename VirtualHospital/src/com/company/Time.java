@@ -215,7 +215,7 @@ public class Time {
         if(d0==0) return 7;
         return d0;
     }
-    public static int validTimeslot(){
+    public static int validTimeslot() throws FileNotFoundException {
         String s = Appointment.selectedDateSlot;
         if (s==null)
             return -3;
@@ -281,10 +281,24 @@ public class Time {
         return 1;
     }
 
-    public static boolean isOccupied(String doctorName,String dateSlot){
+    public static boolean isOccupied(String doctorName,String dateSlot) throws FileNotFoundException {
         boolean isOccupied = false;
+        String str[] = dateSlot.split("[-]");
+        Date date = Date.toDate(str[0]);
 
-        //Code here
+
+        String filename = "AppointmentDetails.txt";
+        File file = new File(filename);
+        Scanner scanner = new Scanner(file);
+        scanner.nextLine();
+        while(scanner.hasNextLine()){
+            String appointment[] = scanner.nextLine().split("[|]");
+            Date date2 = Date.toDate(appointment[3]);
+            if(appointment[2].equals(doctorName) && date.compareTo(date2)==0 && Integer.parseInt(appointment[4]) == Integer.parseInt(str[1])){
+                isOccupied = true;
+                break;
+            }
+        }
 
         return isOccupied;
     }
