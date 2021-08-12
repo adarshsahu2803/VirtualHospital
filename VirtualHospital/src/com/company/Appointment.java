@@ -82,14 +82,14 @@ public class Appointment implements ActionListener {
         dateSlot.setBorder(BorderFactory.createBevelBorder(1));
 
         Confirm = new JButton();
-        Confirm.setBounds(600, 265, 40,25);
+        Confirm.setBounds(440, 310, 100,40);
         Confirm.addActionListener(this);
-        Confirm.setText("Save");
+        Confirm.setText("save");
         Confirm.setFocusable(false);
         Confirm.setBorder(BorderFactory.createBevelBorder(1));
 
         meetLink = new JTextField();
-        meetLink.setBounds(300, 370, 400,50);
+        meetLink.setBounds(300, 395, 400,50);
         meetLink.setHorizontalAlignment(0);
         meetLink.setEditable(false);
         meetLink.setBorder(BorderFactory.createBevelBorder(1));
