@@ -14,9 +14,12 @@ public class Date {
         month = m;
         year  = y;
     }
+    public static Date toDate(String date){
+        return new Date(Integer.parseInt(date.split("/")[0]),Integer.parseInt(date.split("/")[1]),Integer.parseInt(date.split("/")[2]));
+    }
 
     // is the given date valid?
-    private static boolean isValid(int d, int m, int y) {
+    public static boolean isValid(int d, int m, int y) {
         if (m < 1 || m > 12)      return false;
         if (d < 1 || d > DAYS[m]) return false;
         if (m == 2 && d == 29 && !isLeapYear(y)) return false;
