@@ -3,13 +3,12 @@ package com.company;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 
 public class HomePage implements ActionListener {
 
     JFrame frame3 = new JFrame();
     JLabel background;
-    JButton updateDetails, newAppointment, upcomingAppointments, previousAppointments, logout;
+    JButton newAppointment, upcomingAppointments, previousAppointments, logout;
     JTextField userDetails;
 
     HomePage() {
@@ -77,12 +76,6 @@ public class HomePage implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if(e.getSource() == updateDetails) {
-//            frame3.dispose();
-//            try {
-//                new UpdateDetails();
-//            } catch (Exception ex) {}
-//        }
 
         if(e.getSource() == newAppointment) {
             frame3.dispose();

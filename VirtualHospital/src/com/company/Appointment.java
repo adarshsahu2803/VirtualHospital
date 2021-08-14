@@ -6,14 +6,12 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Scanner;
 
-import static com.company.Signup.getLinesCount;
 
 public class Appointment implements ActionListener{
     private String department;
     public static String doctorName;
     private int patientID = Login.getID();
     public static String selectedDateSlot;
-    //public static String availableDateSlot;
     public static String weekTime;
     private String feedback = "null";
     private boolean completed = false;
@@ -152,7 +150,6 @@ public class Appointment implements ActionListener{
             else {
                 String txt = "                   Available Dates/Slots\n";
                 txt = txt + appointment.displayDatesSlots((String) selectDoctor.getSelectedItem());
-                //availableDateSlot = appointment.displayDatesSlots((String) selectDoctor.getSelectedItem());
                 textArea1.setText(txt);
                 textArea1.setLineWrap(true);
                 textArea1.setWrapStyleWord(true);
@@ -195,8 +192,6 @@ public class Appointment implements ActionListener{
             else {
                 frame5.dispose();
                 saveAppointmentDetails();
-//                Main.patientsList[patientID-1001].setCurrentAppointments(Main.patientsList[patientID-1001].getCurrentAppointments()+1);
-//                saveAppointmentInArray();
                 Main.patientsList[patientID-1001].setAppointment(patientID,doctorName,department,dateSlot.getText().split("[-]")[0],Integer.parseInt(dateSlot.getText().split("[-]")[1]),false);
                 new HomePage();
             }
@@ -217,41 +212,9 @@ public class Appointment implements ActionListener{
 
     }
 
-//    void saveAppointmentInArray(){
-//        AppointmentObject a1 = new AppointmentObject(patientID,doctorName,department,Integer.parseInt(dateSlot.getText().split("[-]")[0]),Integer.parseInt(dateSlot.getText().split("[-]")[1]),false,null);
-//        Main.patientsList[patientID-1001].appointmentsList[Main.patientsList[patientID-1001].getCurrentAppointments()-1] = a1;
-//    }
-
-//    public int NumberOfAppointments(int userID) {
-//        File file = new File("AppointmentDetails.txt");
-//        Scanner scanner = null;
-//        try {
-//            scanner = new Scanner(file);
-//        } catch (Exception e) {
-//        }
-//
-//        while (scanner.hasNextLine()) {
-//            String[] arr = scanner.nextLine().split("\\|");
-//            if (!arr[0].equals(doctorName))
-//                continue;
-//            else {
-//                str = str.concat(arr[2]);
-//                break;
-//            }
-//        }
-//        return str;
-//    }
-
     public Appointment(String Department) {
         department = Department;
     }
-
-//        public Appointment(int ID, String doctor, String department, String timeslot){
-//            patientID = ID;
-//            doctorName = doctor;
-//            department = department;
-//            timeslot = timeslot;
-//        }
 
     public String displayDoctors () {
         String finalStr = "";
@@ -276,23 +239,6 @@ public class Appointment implements ActionListener{
         return finalStr;
     }
 
-    public void setDoctor (String doctorName)
-    {
-
-        this.doctorName = doctorName;
-
-        try (FileWriter f = new FileWriter("PatientDetails.txt", true);
-             BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
-
-            p.print(doctorName);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public String displayDatesSlots (String doctorName){
 
         try {
@@ -308,22 +254,6 @@ public class Appointment implements ActionListener{
 
         } catch (Exception e) {}
         return "";
-    }
-
-
-
-    public void setDateSlot (String Date,int SlotNumber){
-
-        try (FileWriter f = new FileWriter("PatientDetails.txt", true);
-             BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
-
-            p.print(Date + "|" + SlotNumber);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     public void addComboItems(String str) {
@@ -357,9 +287,7 @@ public class Appointment implements ActionListener{
 
         while (scanner.hasNextLine()) {
             String[] arr = scanner.nextLine().split("\\|");
-            if (!arr[0].equals(doctorName))
-                continue;
-            else {
+            if (arr[0].equals(doctorName)){
                 str = str.concat(arr[2]);
                 break;
             }
@@ -367,4 +295,3 @@ public class Appointment implements ActionListener{
         return str;
     }
 }
-
