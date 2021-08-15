@@ -41,10 +41,6 @@ public class Main {
         scanner2.close();
 
 
-//        for(int i=0; i<patientsList.length; i++){
-//            System.out.println(patientsList[i]);
-//
-//        }
 
 
 

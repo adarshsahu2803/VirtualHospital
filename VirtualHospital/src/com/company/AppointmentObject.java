@@ -25,7 +25,7 @@ public class AppointmentObject {
 
     public AppointmentObject (){};
 
-//    public AppointmentObject(int id, String appointment, String department, int date, int timeslot, boolean completed, String feedback){};
+
 
     public void saveDoctor(String doctor){
         this.doctor=doctor;
@@ -126,6 +126,7 @@ public class AppointmentObject {
                     } else
                         tempArray.add(line);
                 }
+           reader.close();
             } catch (Exception e) {
             }
         } catch (Exception e) {
@@ -202,8 +203,9 @@ public class AppointmentObject {
 
         String timeSlot= timeslot-1+":00-"+timeslot+":00";
 
-        String Date = date;
-        Date d = new Date(Integer.parseInt(this.date.split("/")[0]),Integer.parseInt(this.date.split("/")[0]),Integer.parseInt(this.date.split("/")[0]));
+        
+        Date d = new Date(Integer.parseInt(this.date.split("/")[0]),Integer.parseInt(this.date.split("/")[1]),Integer.parseInt(this.date.split("/")[2]));
+        String Date = d.toString();
         String Appointments = "Department  :  "+ department+"\nDoctor          :  "+doctor+"\nDate             :  "+Date+"\nTime Slot     :  "+timeSlot+"\nFeedback     :  "+feedback+"\n";
         return Appointments;
     }
