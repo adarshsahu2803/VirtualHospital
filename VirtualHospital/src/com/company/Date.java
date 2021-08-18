@@ -22,8 +22,7 @@ public class Date {
     public static boolean isValid(int d, int m, int y) {
         if (m < 1 || m > 12)      return false;
         if (d < 1 || d > DAYS[m]) return false;
-        if (m == 2 && d == 29 && !isLeapYear(y)) return false;
-        return true;
+        return m != 2 || d != 29 || isLeapYear(y);
     }
 
     // is y a leap year?
@@ -44,11 +43,6 @@ public class Date {
     // is this Date after b?
     public boolean isAfter(Date b) {
         return compareTo(b) > 0;
-    }
-
-    // is this Date a before b?
-    public boolean isBefore(Date b) {
-        return compareTo(b) < 0;
     }
 
     //returns day of week (1-7) for (Mon-Sun)

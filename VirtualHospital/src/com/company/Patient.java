@@ -9,10 +9,18 @@ import java.io.FileNotFoundException;
 public class Patient {
     private String name, password, aadharNum;
     private int age, userID;
+
     private int currentAppointments;
     float height,weight;
+    boolean covid;
 
     public static AppointmentObject[] appointmentsList=new AppointmentObject[50];
+
+
+    private String gender;
+    private String bloodGroup;
+    private String phoneNumber;
+
 
     Patient(int userID, String name, int age, String aadharNum, String password) {
         this.userID = userID;
@@ -21,8 +29,8 @@ public class Patient {
         this.aadharNum = aadharNum;
         this.password = password;
         currentAppointments=0;
-    }
 
+    }
     Patient(int userID, String name, int age, String aadharNum, String password,int appointment)  throws FileNotFoundException{
         this.userID = userID;
         this.name = name;
@@ -30,6 +38,10 @@ public class Patient {
         this.aadharNum = aadharNum;
         this.password = password;
         currentAppointments=appointment;
+
+//when patient makes a new appointment,save the appointmnet details in text file(set functions) also call the saveAppointment function to add it to
+//the array of appointments of the current patient object
+
 
         int size=0;
         String filename = "AppointmentDetails.txt";
@@ -59,26 +71,36 @@ public class Patient {
         appointmentsList[currentAppointments].saveDate(date);
 
         this.currentAppointments++;
+
     }
-
     Patient() {}
-
+    public int getCurrentAppointments(){
+        return currentAppointments;
+    }
+    public void setCurrentAppointments(int n){
+        this.currentAppointments=n;
+    }
     public String getName() {
         return name;
     }
-
     public int getAge() {
         return age;
     }
-
     public String getAadhar() {
         return aadharNum;
     }
-
+    public float getHeight() {
+        return height;
+    }
+    public float getWeight() {
+        return weight;
+    }
+    public boolean getCovid() {
+        return covid;
+    }
     public int getID() {
         return userID;
     }
-
     public String getPassword(){
         return password;
     }
@@ -86,17 +108,18 @@ public class Patient {
     public void setUserID(String uid) {
         try (FileWriter f = new FileWriter("PatientDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
+             PrintWriter p = new PrintWriter(b);) {
 
             p.print(uid + "|");
 
         } catch (Exception e) {}
     }
 
+
     public void setName(String n) {
         try (FileWriter f = new FileWriter("PatientDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
+             PrintWriter p = new PrintWriter(b);) {
 
             p.print(n + "|");
 
@@ -106,7 +129,7 @@ public class Patient {
     public void setAge(String a) {
         try (FileWriter f = new FileWriter("PatientDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
+             PrintWriter p = new PrintWriter(b);) {
 
             p.print(a + "|");
 
@@ -116,7 +139,7 @@ public class Patient {
     public void setAadharNum(String aadhar) {
         try (FileWriter f = new FileWriter("PatientDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
+             PrintWriter p = new PrintWriter(b);) {
 
             p.print(aadhar + "|");
 
@@ -126,29 +149,31 @@ public class Patient {
     public void setPassword(String pass) {
         try (FileWriter f = new FileWriter("PatientDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
+             PrintWriter p = new PrintWriter(b);) {
 
             p.print(pass+"|");
 
         } catch (Exception e) {}
     }
-
     public void setNoOfAppointments(int currentAppointments) {
         try (FileWriter f = new FileWriter("PatientDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
+             PrintWriter p = new PrintWriter(b);) {
 
             p.println(currentAppointments);
 
         } catch (Exception e) {}
     }
+    public int getNumberAppointments(){
+        return currentAppointments;
+    }
 
     public void setUserID2(String uid) {
         try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
+             PrintWriter p = new PrintWriter(b);) {
 
-             p.print(uid + "|");
+            p.print(uid + "|");
 
         } catch (Exception e) {}
     }
@@ -156,19 +181,19 @@ public class Patient {
     public void setGender(String gender) {
         try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
+             PrintWriter p = new PrintWriter(b);) {
 
             p.print(gender + "|");
 
         } catch (Exception e) {}
     }
 
-    public void setBloodGroup(String bloodGroup) {
+    public void setBloodGroup(String bloodgroup) {
         try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
+             PrintWriter p = new PrintWriter(b);) {
 
-            p.print(bloodGroup + "|");
+            p.print(bloodgroup + "|");
 
         } catch (Exception e) {}
     }
@@ -176,7 +201,7 @@ public class Patient {
     public void setHeight(String height) {
         try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
+             PrintWriter p = new PrintWriter(b);) {
 
             p.print(height + "|");
 
@@ -186,7 +211,7 @@ public class Patient {
     public void setWeight(String weight) {
         try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
+             PrintWriter p = new PrintWriter(b);) {
 
             p.print(weight + "|");
 
@@ -196,11 +221,19 @@ public class Patient {
     public void setPhoneNumber(String phoneNumber) {
         try (FileWriter f = new FileWriter("AdditionalDetails.txt", true);
              BufferedWriter b = new BufferedWriter(f);
-             PrintWriter p = new PrintWriter(b)) {
+             PrintWriter p = new PrintWriter(b);) {
 
             p.println(phoneNumber);
 
         } catch (Exception e) {}
+    }
+
+    public void setterGender(String s){
+        this.gender = s;
+    }
+
+    public void setterBloodGroup(String b){
+        this.bloodGroup = b;
     }
 
     public void setterHeight(float height){
@@ -209,6 +242,10 @@ public class Patient {
 
     public void setterWeight(float weight){
         this.weight = weight;
+    }
+
+    public void setterPhoneNumber(String p){
+        this.phoneNumber = p;
     }
 
     public static boolean isIdValid( Patient[] list, int ID){
@@ -220,33 +257,37 @@ public class Patient {
     }
 
     public static boolean checkPassword(Patient[] list, int ID, String password){
-        return list[ID - 1001].getPassword().equals(password);
+        if(list[ID-1001].getPassword().equals(password))
+            return true;
+        else
+            return false;
     }
 
     public String upcomingAppointments(){
-        StringBuilder upcomingApp= new StringBuilder();
+        String upcomingAppts="";
         int flag=1;
         for(int i=0;i<currentAppointments;i++){
-            if(!appointmentsList[i].getStatus()){
+            if(appointmentsList[i].getStatus()==false){
                 flag=0;
-                upcomingApp.append(appointmentsList[i].toStringUpcoming()).append("\n");
+                upcomingAppts = upcomingAppts + appointmentsList[i].toStringUpcoming()+"\n";
             }
         }
         if (flag==1)
             return "No upcoming appointments";
-        else return upcomingApp.toString();
+        else return upcomingAppts;
     }
 
     public String previousAppointments(){
-        StringBuilder prevApp= new StringBuilder();
+        String prevAppts="";
         int flag=1;
         for(int i=0;i<currentAppointments;i++){
-            if(appointmentsList[i].getStatus()){
+            if(appointmentsList[i].getStatus()==true){
                 flag=0;
-                prevApp.append(appointmentsList[i].toStringPrevious()).append("\n");}
+                prevAppts =prevAppts + appointmentsList[i].toStringPrevious()+"\n";}
+
         }
         if (flag==1)
             return "No previous appointments";
-        else return prevApp.toString();
+        else return prevAppts;
     }
 }
