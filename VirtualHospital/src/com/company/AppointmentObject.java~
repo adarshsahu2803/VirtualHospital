@@ -22,7 +22,13 @@ public class AppointmentObject {
         this.date=date;
     }
 
+<<<<<<< HEAD
     public AppointmentObject (){}
+=======
+    public AppointmentObject (){};
+
+
+>>>>>>> 6d9b8814c2627bc3f0eab54ad5f49fbacd3cc16b
 
     public void saveDoctor(String doctor){
         this.doctor=doctor;
@@ -191,9 +197,18 @@ public class AppointmentObject {
     }
     public String toStringPrevious() {
         String timeSlot= timeslot-1+":00-"+timeslot+":00";
+
+<<<<<<< HEAD
         Date d = new Date(Integer.parseInt(this.date.split("/")[0]),Integer.parseInt(this.date.split("/")[0]),Integer.parseInt(this.date.split("/")[0]));
         String Date = d.toString();
 
         return "Department  :  "+ department+"\nDoctor          :  "+doctor+"\nDate             :  "+Date+"\nTime Slot     :  "+timeSlot+"\nFeedback     :  "+feedback+"\n";
+=======
+        
+        Date d = new Date(Integer.parseInt(this.date.split("/")[0]),Integer.parseInt(this.date.split("/")[1]),Integer.parseInt(this.date.split("/")[2]));
+        String Date = d.toString();
+        String Appointments = "Department  :  "+ department+"\nDoctor          :  "+doctor+"\nDate             :  "+Date+"\nTime Slot     :  "+timeSlot+"\nFeedback     :  "+feedback+"\n";
+        return Appointments;
+>>>>>>> 6d9b8814c2627bc3f0eab54ad5f49fbacd3cc16b
     }
 }

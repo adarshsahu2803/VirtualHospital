@@ -34,7 +34,7 @@ public class DoctorHomePage implements ActionListener {
                 n++;
             }
         }
-
+     scanner.close();
         List<String> list1 = new ArrayList<String>();
         list1.add("Upcoming Appointment's Date-Slot");
         List<String> list2 = new ArrayList<String>();

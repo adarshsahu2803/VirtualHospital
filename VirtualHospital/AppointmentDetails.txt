@@ -5,3 +5,5 @@ ID|Department|Doctor|Date|Slot|Completed|Feedback
 1004|Gastroenterologists|Dr. Aabha Nagral|6/8/2021|19|true|null
 1005|Dermatologists|Dr. Ramji Gupta|10/08/2021|11|true|hii patient.
 1003|Dermatologists|Dr. Ramji Gupta|12/8/2021|9|true|null
+1001|Dermatologists|Dr. Ramji Gupta|17/8/2021|11|false|null
+1002|Dermatologists|Dr. Ramji Gupta|17/08/2021|14|false|null
