@@ -1,10 +1,10 @@
 package com.company;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Doctor {
 
 	private String name;
@@ -12,10 +12,6 @@ public class Doctor {
 	private int experience;
 	private double rating;
 	private int doctorID;
-//	private time[] timeslots;
-//	private String meetingLink;
-
-
 
 	public Doctor(String name, String department, int experience, double rating, int doctorID){
 
@@ -24,8 +20,6 @@ public class Doctor {
 		this.experience = experience;
 		this.rating = rating;
 		this.doctorID = doctorID;
-
-
 	}
 
 	public String getName() {
@@ -36,69 +30,9 @@ public class Doctor {
 		return department;
 	}
 
-	public int getExperience() {
-		return experience;
-	}
-
-	public double getRating() {
-		return rating;
-	}
-
-	public int getDoctorID() {
-		return doctorID;
-	}
-
-//	public time[] getTimeslots() {
-//		return timeslots;
-//	}
-
-//	public String getMeetingLink() {
-//		return meetingLink;
-//	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
-	public void setExperience(int experience) {
-		this.experience = experience;
-	}
-
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
-
-	public void setDoctorID(int doctorID) {
-		this.doctorID = doctorID;
-	}
-
-//	public void setTimeslots(time[] timeslots) {
-//		this.timeslots = timeslots;
-//	}
-
-//	public void setMeetingLink(String meetingLink) {
-//		this.meetingLink = meetingLink;
-//	}
-
 	public String toString() {
 		return this.name + "\n" + "Experience : " + this.experience + "\nRating : " + this.rating;
 	}
-
-	public static String getDepartment(Doctor[] list, int ID){
-		for(int i=0; i<list.length; i++){
-			if(list[i].doctorID == ID)
-				return list[i].department;
-		}
-		return "null";
-	}
-
-
-	// all doctor functions
 
 	public static void updateFeedbackArray(String date,int slot,String feedback,AppointmentObject[] doctorAppointmentsList){
 		for(int i=0;i<100;i++){
@@ -147,7 +81,6 @@ public class Doctor {
 		String timeF = time-1 + ":00 - " + time + ":00";
 		details += "\nDate\t                  : " +date+ "\nTime\t                  : " + timeF;
 
-
 		int ID=0;
 		for(int i=0;i<100;i++)
 		if(doctorAppointmentsList[i].getDate().equals(date) && doctorAppointmentsList[i].getTimeslot()==time){
@@ -174,7 +107,6 @@ public class Doctor {
 			}}
 		scanner0.close();
 
-
 		File file = new File("AdditionalDetails.txt");
 		Scanner scanner = null;
 		try {
@@ -197,7 +129,7 @@ public class Doctor {
 		}}
 		scanner.close();
 
-		if(status == false) {
+		if(!status) {
 			int size=0;
 			String filename = "AppointmentDetails.txt";
 			File AppointmentsFile = new File(filename);

@@ -3,22 +3,18 @@ package com.company;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 
 public class UpdateDetails implements ActionListener {
 
     JFrame frame4 = new JFrame();
     JLabel background;
-    JButton home, submit;
+    JButton submit;
     JTextField ID, Name, Age, Aadhar, Password, Height, Weight, PhoneNumber;
     JComboBox Gender, BloodGroup;
-
-//    Lists lists = new Lists();
 
     UpdateDetails()  {
         ImageIcon image = new ImageIcon("vh.jpg");
         ImageIcon bg = new ImageIcon("bg3.jpg");
-        ImageIcon hp = new ImageIcon("bg4.jpg");
 
         background = new JLabel(bg);
         background.setSize(800, 600);
@@ -34,13 +30,6 @@ public class UpdateDetails implements ActionListener {
         frame4.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame4.setIconImage(image.getImage());
         frame4.setLocationRelativeTo(null);
-
-//        home = new JButton();
-//        home.setBounds(10, 10, 35,35);
-//        home.addActionListener(this);
-//        home.setIcon(hp);
-//        home.setFocusable(false);
-//        home.setBorder(BorderFactory.createBevelBorder(1));
 
         ID = new JTextField();
         ID.setBounds(300, 60, 200,50);
@@ -123,7 +112,6 @@ public class UpdateDetails implements ActionListener {
         background.add(Weight);
         background.add(PhoneNumber);
         background.add(submit);
-//        background.add(home);
         frame4.setVisible(true);
     }
 
@@ -140,11 +128,6 @@ public class UpdateDetails implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Check the details entered", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
-
-//        if(e.getSource() == home) {
-//            frame4.dispose();
-//            new HomePage();
-//        }
     }
 
     private int check(){
@@ -161,7 +144,7 @@ public class UpdateDetails implements ActionListener {
         String s1 = Height.getText();
         if(s1.equals(""))
             return 0;
-        int i=0;
+        int i;
         for(i=0;i<s1.length();i++){
             if((s1.charAt(i)<'0'&&s1.charAt(i)>'9')&&(s1.charAt(i)!='.'))
                 return 0;
@@ -180,7 +163,6 @@ public class UpdateDetails implements ActionListener {
             if(s3.charAt(i)<'0'&&s3.charAt(i)>'9')
                 return 0;
         }
-
         return 1;
     }
 

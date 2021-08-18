@@ -3,5 +3,5 @@ ID|Department|Doctor|Date|Slot|Completed|Feedback
 1003|Neurologists|Dr. Mukul Verma|6/8/2021|15|true|null
 1002|Cardiologists|Dr. Jaisom Chopra|7/8/2021|14|true|null
 1004|Gastroenterologists|Dr. Aabha Nagral|6/8/2021|19|true|null
-1005|Dermatologists|Dr. Ramji Gupta|10/08/2021|11|true|null
+1005|Dermatologists|Dr. Ramji Gupta|10/08/2021|11|true|hii patient.
 1003|Dermatologists|Dr. Ramji Gupta|12/8/2021|9|true|null
