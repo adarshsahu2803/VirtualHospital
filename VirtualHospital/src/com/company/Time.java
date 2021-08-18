@@ -13,6 +13,7 @@ import static com.company.Patient.appointmentsList;
 
 public class Time {
     private String daySlot;
+    public int[] timeSlots;
 
     public Time(String daySlot){
         this.daySlot = daySlot;
@@ -22,6 +23,7 @@ public class Time {
         String time;
         String toDay = Time.today();
         Date today = new Date(Time.getDate(toDay),Time.getMonth(toDay),Time.getYear(toDay));
+        int day = Time.Day_of_week(toDay);
         Date d1=today,d2=today,d3=today;
         int[] slots = setSlots();
         int day1,day2,day3;
@@ -83,7 +85,26 @@ public class Time {
         return time;
     }
 
+/*
+    public static boolean completed(String Date,int slotNumber){
+        String[] d = Date.split("/");
+        Date appDate = new Date(Integer.parseInt(d[0]),Integer.parseInt(d[1]),Integer.parseInt(d[2]));
+        String[] D = today().split("/");
+        Date toDate = new Date(Integer.parseInt(D[0]),Integer.parseInt(D[1]),Integer.parseInt(D[2]));
+        if(toDate.isAfter(appDate))
+            return true;
+        if(toDate.compareTo(appDate)==0){
+            String[] c = now().split(" ");
+            int h = Integer.parseInt(c[1]);
+            if(h>slotNumber)
+                return true;
+        }
+        return false;
+        }
+*/
+
     public static void updateCompleted() throws FileNotFoundException {
+
         ArrayList<String> tempArray = new ArrayList<>();
         boolean status;
 
@@ -159,31 +180,27 @@ public class Time {
     }
 
     public static String today(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d/MM/uuuu");
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
     }
     public static String now(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d/MM/yyyy HH");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d/MM/uuuu HH");
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
     }
     public static int getTime(){
         return Integer.parseInt(now().split(" ")[1]);
     }
-
     public static int getDate(String date){
         return Integer.parseInt(date.split("/")[0]);
     }
-
     public static int getMonth(String date){
         return Integer.parseInt(date.split("/")[1]);
     }
-
     public static int getYear(String date){
         return Integer.parseInt(date.split("/")[2]);
     }
-
     public static int Day_of_week (String day){
         String[] dmy = day.split("/");
         int d = Integer.parseInt(dmy[0]);
@@ -197,31 +214,35 @@ public class Time {
         if(d0==0) return 7;
         return d0;
     }
-
     public static int validTimeslot() throws FileNotFoundException {
         String s = Appointment.selectedDateSlot;
-        if (s==null) return -3;
-
+        if (s==null)
+            return -3;
+        //String s = S.trim();
         String weekTime = Appointment.weekTime;
         Time t = new Time(weekTime);
         int[] slots = t.setSlots();
         for(int i=0;i<s.length();i++)
             if(!(s.charAt(i)==45||(s.charAt(i)>=47&&s.charAt(i)<=57))) return 0;
-
+//        if (s.contains(" ")) return 0;
+//        if(!s.contains("-")) return 0;
+//        if(s.contains(")")||s.contains("(")) return 0;
+//        if(!s.contains("/")) return 0;
         String[] strings = s.split("-")[0].split("/");
         if(!(Date.isValid(Integer.parseInt(strings[0]),Integer.parseInt(strings[1]),Integer.parseInt(strings[2]))))
             return 0;
-
         Date selected = Date.toDate(s.split("-")[0]);
+//        String toDay = Time.today();
+//        Date today = new Date(Time.getDate(toDay),Time.getMonth(toDay),Time.getYear(toDay));
         Date today = Date.toDate(Time.today());
         Date d1=today,d2=today,d3=today;
         int day1,day2,day3;
         day1 = slots[0]/100;
         day2 = slots[3]/100;
         day3 = slots[6]/100;
-        for(int i =0;i<9;i++)
+        for(int i =0;i<9;i++){
             slots[i] %= 100;
-
+        }
         while (true){
             Date t1 = d1;
             d1 = t1.next();
@@ -277,6 +298,11 @@ public class Time {
                 break;
             }
         }
+
         return isOccupied;
     }
+
+
+
+
 }

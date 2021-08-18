@@ -20,6 +20,7 @@ public class DoctorHomePage implements ActionListener {
     public static AppointmentObject[] docAppointments = new AppointmentObject[50];
 
     DoctorHomePage() throws FileNotFoundException {
+
         String doctorName = Main.doctorsList[Login.getID()-2343245].getName();
 
         int n=0;
@@ -34,7 +35,7 @@ public class DoctorHomePage implements ActionListener {
                 n++;
             }
         }
-     scanner.close();
+        scanner.close();
         List<String> list1 = new ArrayList<String>();
         list1.add("Upcoming Appointment's Date-Slot");
         List<String> list2 = new ArrayList<String>();
@@ -46,6 +47,7 @@ public class DoctorHomePage implements ActionListener {
             else
                 list2.add(docAppointments[i].date + "-" + docAppointments[i].getTimeslot());
         }
+
 
         ImageIcon image = new ImageIcon("vh.jpg");
         ImageIcon bg = new ImageIcon("bg3.jpg");

@@ -64,16 +64,19 @@ public class HomePage implements ActionListener {
         logout.setFocusable(false);
         logout.setBorder(BorderFactory.createBevelBorder(1));
 
+//        background.add(updateDetails);
         background.add(userDetails);
         background.add(newAppointment);
         background.add(upcomingAppointments);
         background.add(previousAppointments);
         background.add(logout);
         frame3.setVisible(true);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if(e.getSource() == newAppointment) {
             frame3.dispose();
             new Appointment();

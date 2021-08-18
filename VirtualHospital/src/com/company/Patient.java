@@ -228,6 +228,7 @@ public class Patient {
         } catch (Exception e) {}
     }
 
+    //Setters-II
     public void setterGender(String s){
         this.gender = s;
     }
@@ -247,6 +248,7 @@ public class Patient {
     public void setterPhoneNumber(String p){
         this.phoneNumber = p;
     }
+    //Setters-II end
 
     public static boolean isIdValid( Patient[] list, int ID){
         for(int i=0; i<Signup.getLinesCount()-1; i++){
@@ -263,6 +265,7 @@ public class Patient {
             return false;
     }
 
+
     public String upcomingAppointments(){
         String upcomingAppts="";
         int flag=1;
@@ -275,6 +278,7 @@ public class Patient {
         if (flag==1)
             return "No upcoming appointments";
         else return upcomingAppts;
+
     }
 
     public String previousAppointments(){

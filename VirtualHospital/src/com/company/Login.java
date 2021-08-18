@@ -23,7 +23,7 @@ public class Login implements ActionListener{
         back.setIcon(backButton);
         back.setFocusable(false);
         back.setBorder(BorderFactory.createBevelBorder(1));
-        
+
         background = new JLabel(bg);
         background.setSize(800,600);
         background.setHorizontalAlignment(JLabel.LEFT);
@@ -101,9 +101,8 @@ public class Login implements ActionListener{
 
             else
                 JOptionPane.showMessageDialog(null, "Invalid ID/password", "ERROR", JOptionPane.ERROR_MESSAGE);
+
         }
 
     }
 }
-
-

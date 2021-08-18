@@ -22,12 +22,15 @@ public class Main {
         }
         scanner.close();
 
+
+
         n=0;
         String file = "PatientDetails.txt";
 
         File patientsFile = new File(file);
         Scanner scanner2 = new Scanner(patientsFile);
         scanner2.nextLine();
+
 
         while(scanner2.hasNextLine()) {
             String[] patient = scanner2.nextLine().split("[|]");
@@ -36,6 +39,11 @@ public class Main {
             n++;
         }
         scanner2.close();
+
+
+
+
+
 
         new LoginSignup();
     }

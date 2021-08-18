@@ -1,6 +1,7 @@
 package com.company;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -89,7 +90,9 @@ public class Signup extends Patient implements ActionListener {
             while (br.readLine() != null)
                 lines++;
         } catch (Exception e) {}
+
         return lines;
+
     }
 
     private String setID() {
@@ -119,11 +122,17 @@ public class Signup extends Patient implements ActionListener {
         }
 
         if(e.getSource() == submit) {
-            JOptionPane.showMessageDialog(null, "Invalid Age", "ERROR", JOptionPane.ERROR_MESSAGE);
+            try {
+                int validAge = Integer.parseInt(age.getText());
+            }
+            catch (Exception NumberFormatException) {
+                JOptionPane.showMessageDialog(null, "Invalid Age", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
             if(aadharNumber.getText().length() != 12) {
                 JOptionPane.showMessageDialog(null, "Invalid Aadhar Number", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
             else {
+
                 frame2.dispose();
                 saveDetails();
                 Patient newPatient = new Patient(Integer.parseInt(ID.getText()), name.getText(), Integer.parseInt(age.getText()), aadharNumber.getText(), Password.getText());

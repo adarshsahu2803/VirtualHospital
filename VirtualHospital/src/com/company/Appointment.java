@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Scanner;
 
-public class Appointment implements ActionListener {
 
+public class Appointment implements ActionListener{
     private String department;
     public static String doctorName;
     private int patientID = Login.getID();
@@ -145,6 +145,7 @@ public class Appointment implements ActionListener {
                 addComboItems((String) selectDepartment.getSelectedItem());
             }
 
+
             if (selectDoctor.getSelectedItem().equals("Select Doctor")) {}
             else {
                 String txt = "                   Available Dates/Slots\n";
@@ -183,7 +184,7 @@ public class Appointment implements ActionListener {
                 if(status==-2)
                     JOptionPane.showMessageDialog(null, "This slot isn't available.Please book another slot", "ERROR", JOptionPane.ERROR_MESSAGE);
                 if(status==-3)
-                    JOptionPane.showMessageDialog(null, "Save the DateSlot before submitting", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Save the Dateslot before submitting", "ERROR", JOptionPane.ERROR_MESSAGE);
                 if(status==-4)
                     JOptionPane.showMessageDialog(null, "Invalid Department/Doctor", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
@@ -208,6 +209,7 @@ public class Appointment implements ActionListener {
         ao.setStatus(completed);
         ao.setFeedback(feedback);
         ao.incrementAppointmentNum(patientID);
+
     }
 
     public Appointment(String Department) {
@@ -285,7 +287,7 @@ public class Appointment implements ActionListener {
 
         while (scanner.hasNextLine()) {
             String[] arr = scanner.nextLine().split("\\|");
-            if (arr[0].equals(doctorName)) {
+            if (arr[0].equals(doctorName)){
                 str = str.concat(arr[2]);
                 break;
             }
