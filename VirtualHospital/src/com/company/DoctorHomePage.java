@@ -23,6 +23,10 @@ public class DoctorHomePage implements ActionListener {
 
         String doctorName = Main.doctorsList[Login.getID()-2343245].getName();
 
+        try {
+            Time.updateCompleted();
+        } catch (Exception ex) {}
+
         int n=0;
         String filename = "AppointmentDetails.txt";
         File file = new File(filename);
@@ -67,8 +71,11 @@ public class DoctorHomePage implements ActionListener {
         frame8.setLocationRelativeTo(null);
 
         userDetails = new JTextField();
-        userDetails.setBounds(600, 25, 150,50);
-        userDetails.setText("User ID : " + Login.getID());
+        userDetails.setBounds(300, 25, 420,50);
+        String str = "https://meet.google.com/";
+        str = str.concat(Main.doctorsList[Login.getID()-2343245].getDepartment());
+        str=str.concat(""+Main.doctorsList[Login.getID()-2343245].getExperience());
+        userDetails.setText("User ID : " + Login.getID()+"\n"+"\nMeeting Link:"+str);
         userDetails.setHorizontalAlignment(0);
         userDetails.setBorder(BorderFactory.createBevelBorder(1));
         userDetails.setEditable(false);

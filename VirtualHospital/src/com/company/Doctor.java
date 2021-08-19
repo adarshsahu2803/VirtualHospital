@@ -27,6 +27,7 @@ public class Doctor {
 	public String getName() {
 		return name;
 	}
+	public int getExperience(){return experience;}
 
 	public String getDepartment() {
 		return department;
@@ -42,9 +43,10 @@ public class Doctor {
 
 	public static void updateFeedbackArray(String date,int slot,String feedback,AppointmentObject[] doctorAppointmentsList){
 		for(int i=0;i<100;i++){
-			if(doctorAppointmentsList[i].getDate().equals(date)&&doctorAppointmentsList[i].getTimeslot()==slot)
+			if(doctorAppointmentsList[i].getDate().equals(date)&&doctorAppointmentsList[i].getTimeslot()==slot) {
 				doctorAppointmentsList[i].saveFeedback(feedback);
-			break;
+				break;
+			}
 		}
 	}
 
@@ -176,7 +178,7 @@ public class Doctor {
 
 			while(scanner1.hasNextLine()) {
 				String[] appointments = scanner1.nextLine().split("[|]");
-				if(Integer.parseInt(appointments[0])==ID && Boolean.parseBoolean(appointments[5])){
+				if(Integer.parseInt(appointments[0])==ID && Boolean.parseBoolean(appointments[5]) && date.equals(appointments[3]) && time==Integer.parseInt(appointments[4])){
 					details=details+"\n\nFeedback\t                  : "+appointments[6];
 				}
 			}
