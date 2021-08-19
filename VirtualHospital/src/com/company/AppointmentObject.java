@@ -8,7 +8,6 @@ public class AppointmentObject {
     private int patientID,timeslot;
     String doctor;
     String department;
-    String MeetLink;
     String feedback;
     String date;
     private boolean completed;
@@ -24,7 +23,6 @@ public class AppointmentObject {
     }
 
     public AppointmentObject (){};
-
 
 
     public void saveDoctor(String doctor){
@@ -147,26 +145,16 @@ public class AppointmentObject {
     public int getID(){
         return this.patientID;
     }
-
-    public String getDoctor(){
-        return doctor;
-    }
-    public String getDepartment(){
-        return department;
-    }
     public int getTimeslot(){
         return timeslot;
     }
     public String getDate(){
         return date;
     }
-
     public boolean getStatus(){
         return completed;
     }
-    public String getFeedback(){
-        return feedback;
-    }
+
     public String MeetLink() {
         String str = "https://meet.google.com/";
         str = str.concat(department);

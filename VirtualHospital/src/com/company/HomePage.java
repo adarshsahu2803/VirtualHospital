@@ -64,7 +64,7 @@ public class HomePage implements ActionListener {
         logout.setFocusable(false);
         logout.setBorder(BorderFactory.createBevelBorder(1));
 
-//        background.add(updateDetails);
+
         background.add(userDetails);
         background.add(newAppointment);
         background.add(upcomingAppointments);

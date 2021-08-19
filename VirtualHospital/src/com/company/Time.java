@@ -13,7 +13,6 @@ import static com.company.Patient.appointmentsList;
 
 public class Time {
     private String daySlot;
-    public int[] timeSlots;
 
     public Time(String daySlot){
         this.daySlot = daySlot;
@@ -85,23 +84,6 @@ public class Time {
         return time;
     }
 
-/*
-    public static boolean completed(String Date,int slotNumber){
-        String[] d = Date.split("/");
-        Date appDate = new Date(Integer.parseInt(d[0]),Integer.parseInt(d[1]),Integer.parseInt(d[2]));
-        String[] D = today().split("/");
-        Date toDate = new Date(Integer.parseInt(D[0]),Integer.parseInt(D[1]),Integer.parseInt(D[2]));
-        if(toDate.isAfter(appDate))
-            return true;
-        if(toDate.compareTo(appDate)==0){
-            String[] c = now().split(" ");
-            int h = Integer.parseInt(c[1]);
-            if(h>slotNumber)
-                return true;
-        }
-        return false;
-        }
-*/
 
     public static void updateCompleted() throws FileNotFoundException {
 
@@ -218,22 +200,17 @@ public class Time {
         String s = Appointment.selectedDateSlot;
         if (s==null)
             return -3;
-        //String s = S.trim();
         String weekTime = Appointment.weekTime;
         Time t = new Time(weekTime);
         int[] slots = t.setSlots();
         for(int i=0;i<s.length();i++)
             if(!(s.charAt(i)==45||(s.charAt(i)>=47&&s.charAt(i)<=57))) return 0;
-//        if (s.contains(" ")) return 0;
-//        if(!s.contains("-")) return 0;
-//        if(s.contains(")")||s.contains("(")) return 0;
-//        if(!s.contains("/")) return 0;
+
         String[] strings = s.split("-")[0].split("/");
         if(!(Date.isValid(Integer.parseInt(strings[0]),Integer.parseInt(strings[1]),Integer.parseInt(strings[2]))))
             return 0;
         Date selected = Date.toDate(s.split("-")[0]);
-//        String toDay = Time.today();
-//        Date today = new Date(Time.getDate(toDay),Time.getMonth(toDay),Time.getYear(toDay));
+
         Date today = Date.toDate(Time.today());
         Date d1=today,d2=today,d3=today;
         int day1,day2,day3;
@@ -284,7 +261,6 @@ public class Time {
         boolean isOccupied = false;
         String str[] = dateSlot.split("[-]");
         Date date = Date.toDate(str[0]);
-
 
         String filename = "AppointmentDetails.txt";
         File file = new File(filename);

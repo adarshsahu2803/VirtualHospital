@@ -1,3 +1,0 @@
-ID|Department|Doctor|Date|Slot|Completed|Feedback
-1001|Dermatologists|Dr. Anil K. Agarwal|7|19|false|null
-1001|Endocrinologists|Dr. Pradeep G. Talwalkar|3|11|false|null
