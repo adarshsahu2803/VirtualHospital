@@ -10,4 +10,5 @@ To compile and run this on your local system,run the below command to obtain the
 ##### Now open the git folder "VirtualHospital" and start "VirtualHospital" present inside the cloned VirtualHospital folder as a project folder in your IDE.
 ##### Build and run the project from Main.java which is present in src/com/company.
 ##### A new patient can choose Signup and existing patient should login by clicking on Login button.
-##### A registered doctor present in DoctorDetails.txt can login using User ID present in DoctorDetails.txt and the ***password is respective department.***
+##### A registered doctor present in DoctorDetails.txt can login using User ID present in DoctorDetails.txt and the ***password is respective department name.*** 
+##### Exanple for doctor login credentials ID:2343245 Password:Dermatologists
